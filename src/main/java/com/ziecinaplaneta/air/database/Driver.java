@@ -157,4 +157,33 @@ public class Driver {
         }
     }
 
+    public String getNameByUsername(String username){
+        try {
+            String query = "SELECT name FROM users WHERE username = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setString(1, username);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getString("name");
+        } catch (SQLException e) {
+            System.out.println("Warning: getUserId query failed!");
+            return "Empty Name";
+        }
+    }
+
+    public String getEmailByUsername(String username){
+        try {
+            String query = "SELECT email FROM users WHERE username = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setString(1, username);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getString("name");
+        } catch (SQLException e) {
+            System.out.println("Warning: getUserId query failed!");
+            return "Empty Name";
+        }
+    }
+
+
 }

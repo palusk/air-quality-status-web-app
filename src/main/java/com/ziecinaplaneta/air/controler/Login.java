@@ -82,8 +82,10 @@ public class Login extends HttpServlet {
         if (login != null) {
             if (!(username == null) && !(password == null)) {
                 if (database.validateLogin(username, password)) {
-
                     Account user = new Account();
+
+                    user.setEmail(database.getEmailByUsername(username));
+                    user.setImie(database.getNameByUsername(username));
                     user.setLogin(username);
                     user.setUprawnienia(1);
                     session.setAttribute("user", user);
