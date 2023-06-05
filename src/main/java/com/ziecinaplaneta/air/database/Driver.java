@@ -178,10 +178,10 @@ public class Driver {
             stm.setString(1, username);
             ResultSet result = stm.executeQuery();
             result.next();
-            return result.getString("name");
+            return result.getString("email");
         } catch (SQLException e) {
             System.out.println("Warning: getUserId query failed!");
-            return "Empty Name";
+            return "Empty email";
         }
     }
 
