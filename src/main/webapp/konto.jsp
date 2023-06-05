@@ -8,19 +8,11 @@
         session.setAttribute("user", user);
     }
 
-    Driver database = new Driver();
-    String name;
-    // Pobierz tekst paragrafu z sesji
-    String UserName = (String) session.getAttribute("user");
-    if (UserName != null) {
-        name = database.getNameByUsername(UserName);
-            if (name == null) {
-                name = "Empty Name";
-            }
+    String name = user.getImie();
+    String email = user.getEmail();
+    String userName = user.getLogin();
 
-    } else{
-        name = "Empty Name";
-    }
+
 
 %>
 <!DOCTYPE html>
@@ -35,8 +27,8 @@
         <h2>Konto użytkownika</h2>
         <form action="login" method="post">
            <p2>Imię: <%= name %></p2> </br></br>
-            Email: </br></br>
-            Nazwa użytkownika:  </br></br>
+            <p2>Email:  <%= email %></p2></br></br>
+            <p2>Nazwa użytkownika:  <%= userName %></p2>  </br></br>
 
             <label for="city">Miasto:</label>
             <input type="text" id="city" name="city" placeholder="Wprowadź miasto" required>
