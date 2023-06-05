@@ -166,7 +166,7 @@ public class Driver {
             result.next();
             return result.getString("name");
         } catch (SQLException e) {
-            System.out.println("Warning: getUserId query failed!");
+            System.out.println("Warning: getNameByUsername query failed!");
             return "Empty Name";
         }
     }
@@ -180,7 +180,7 @@ public class Driver {
             result.next();
             return result.getString("email");
         } catch (SQLException e) {
-            System.out.println("Warning: getUserId query failed!");
+            System.out.println("Warning: getEmailByUsername query failed!");
             return "Empty email";
         }
     }
