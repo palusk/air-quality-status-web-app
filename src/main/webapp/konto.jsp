@@ -9,13 +9,19 @@
     }
 
     Driver database = new Driver();
-
+    String name;
     // Pobierz tekst paragrafu z sesji
-    String tekstParagrafu = (String) session.getAttribute("user");
-    tekstParagrafu.ge;
-    if (tekstParagrafu == null) {
-        tekstParagrafu = "Empty Name";
+    String UserName = (String) session.getAttribute("user");
+    if (UserName != null) {
+        name = database.getNameByUsername(UserName);
+            if (name == null) {
+                name = "Empty Name";
+            }
+
+    } else{
+        name = "Empty Name";
     }
+
 %>
 <!DOCTYPE html>
 <html>
@@ -28,9 +34,9 @@
     <div class="user-info">
         <h2>Konto użytkownika</h2>
         <form action="login" method="post">
-           <p2>Imię: <%= tekstParagrafu %></p2> </br></br>
-            Email:<%= tekstParagrafu %> </br></br>
-            Nazwa użytkownika: <%= tekstParagrafu %> </br></br>
+           <p2>Imię: <%= name %></p2> </br></br>
+            Email: </br></br>
+            Nazwa użytkownika:  </br></br>
 
             <label for="city">Miasto:</label>
             <input type="text" id="city" name="city" placeholder="Wprowadź miasto" required>
