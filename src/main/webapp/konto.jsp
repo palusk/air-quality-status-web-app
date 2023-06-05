@@ -12,8 +12,6 @@
     String email = user.getEmail();
     String userName = user.getLogin();
 
-
-
 %>
 <!DOCTYPE html>
 <html>
