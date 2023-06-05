@@ -13,6 +13,9 @@
         <element id="directory" name="classes">
           <element id="module-output" name="air-quality-status_web_app2" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: com.h2database:h2:2.1.214" />
+        </element>
       </element>
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/target/air-1.0-SNAPSHOT/META-INF/MANIFEST.MF" />

@@ -1,0 +1,55 @@
+body {
+    background-image: url('img/krakow2.jpg');
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.user-info {
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.user-info h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.user-info label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-info input[type="text"],
+.user-info input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.user-info input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.user-info input[type="submit"]:hover {
+    background-color: #45a049;
+}

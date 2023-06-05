@@ -1,0 +1,89 @@
+
+#bg3 {
+    background-image: url('img/zalecenia.jpg');
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    filter: blur(4px);
+}
+
+
+#textMenu2 {
+    display: inline-block;
+}
+
+
+header ul{
+
+    padding: 0;
+    list-style: none;
+    display: inline;
+    text-align: center;
+}
+header li{
+    display: inline-block;
+}
+header li a{
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 3vw;
+    border: none;
+    padding: 2.5vw;
+    cursor: pointer;
+    font-family: Arial, Verdana, serif;
+}
+header li a:hover{
+    color: #555555;
+}
+
+header li a {
+    padding: 1.5vw;
+    font-size: 1vw;
+}
+
+a {
+    z-index: 10;
+    color: black;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0), white);
+    text-align: center;
+}
+
+
+/* Styl dla listy głównej */
+.lista-podpunktow {
+    font-family: Arial, sans-serif;
+    margin-left: 20px;
+    position: absolute;
+    top: 150px;
+    left: 150px;
+}
+
+/* Styl dla tytułów podpunktów */
+.tytul-podpunktu {
+    font-weight: bold;
+    font-size: 30px;
+}
+
+/* Styl dla listy podpunktów podstawowych */
+.lista-podpunktow-podstawowa {
+    margin-left: 20px;
+    font-size: 20px;
+}
+
+/* Styl dla elementów listy podpunktów podstawowych */
+.lista-podpunktow-podstawowa li {
+    margin-bottom: 5px;
+
+}

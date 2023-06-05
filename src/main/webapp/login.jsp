@@ -3,7 +3,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>Login Page with Background Image Example</title>
+  <title>Login Page</title>
   <link rel="stylesheet" href="login_style.css">
 
 </head>
@@ -11,19 +11,21 @@
 
 <div id="bg"></div>
 
-<form>
+<form action="login" method="post">
   <div class="form-field">
-    <input type="email" placeholder="Email / Username" required/>
+    <input type="text" name="username" placeholder="Username" required/>
   </div>
 
   <div class="form-field">
-    <input type="password" placeholder="Password" required/>
+    <input type="password" name="password" placeholder="Password" required/>
   </div>
 
   <div class="form-field">
-    <button class="btn" type="submit">Log in</button>
+    <button class="btn" type="submit" name="login" value="login">Zaloguj</button>
 
-    <a href="index.html"><button class="btn" type="button">Log in as guest</button></a>
+    <a href="index.jsp"><button class="btn" type="button">Zaloguj jako gość</button></a>
+
+    <a href="registration.jsp"><button class="btn" type="button" value="register">Zarejestruj</button></a>
 
 
   </div>
