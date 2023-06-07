@@ -33,6 +33,9 @@
             <% if (user.getUprawnienia() > 0) { %>
                 <li><form action="login" method="post"><button class="btn2" type="submit" name="logout" value="logout">Wyloguj</button></form></li>
             <% }else{ %><li><a href="login.jsp"><button class="btn" type="button">Zaloguj</button></a></li> <% } %>
+            <% if (user.getUprawnienia() == -1) { %>
+            <li> <a  href="admin.jsp">ADMINISTRATION</a></li>
+            <% } %>
         </ul>
     </header>
     <div id="interesting-facts">

@@ -1,8 +1,10 @@
 package com.ziecinaplaneta.air.database;
-
+import com.ziecinaplaneta.air.user.Account;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Driver {
     static String jdbcUrl;
@@ -13,7 +15,7 @@ public class Driver {
 
     public Driver() {
 
-        jdbcUrl = "jdbc:h2:D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
+        jdbcUrl = "jdbc:h2:C:/Users/mateu/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
         username = "admin";
         password = "admin";
 
@@ -185,5 +187,28 @@ public class Driver {
         }
     }
 
+    public List<Account> getUsersFromDatabase() {
+        List<Account> users = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM users";
+            PreparedStatement stm = connection.prepareStatement(query);
+            ResultSet result = stm.executeQuery();
+            int counter = 0;
+            while (result.next()){
+                users.add(new Account());
+                users.get(counter).setId(result.getInt("IDUSER"));
+                users.get(counter).setIdRegion(result.getInt("IDREGION"));
+                users.get(counter).setImie(result.getString("NAME"));
+                users.get(counter).setLogin(result.getString("USERNAME"));
+                users.get(counter).setEmail(result.getString("EMAIL"));
+                users.get(counter).setUprawnienia(result.getInt("PERMISSIONS"));
+                counter++;
+            }
+            return users;
+        } catch (SQLException e) {
+            System.out.println("Warning: no users load!");
+            return users;
+        }
+    }
 
 }
