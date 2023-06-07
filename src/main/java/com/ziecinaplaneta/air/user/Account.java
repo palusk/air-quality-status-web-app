@@ -8,6 +8,25 @@ public class Account {
     private int wiek = 0;
     private int uprawnienia = -1;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getIdRegion() {
+        return idRegion;
+    }
+
+    public void setIdRegion(int idRegion) {
+        this.idRegion = idRegion;
+    }
+
+    private int id;
+    private int idRegion;
+
     public String getImie() {
         return imie;
     }
