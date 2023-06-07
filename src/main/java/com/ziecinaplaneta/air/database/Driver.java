@@ -211,9 +211,10 @@ public class Driver {
 
     public void changePermisions(int userId, int permisions) {
         try {
-            String sqlUpdate = "DELETE FROM USERS WHERE id = ?";
+            String sqlUpdate = "UPDATE USERS PERMISSIONS = ? WHERE IDUSER = ?";
             PreparedStatement stm = connection.prepareStatement(sqlUpdate);
-            stm.setInt(1, userId);
+            stm.setInt(1, permisions);
+            stm.setInt(2, userId);
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e + " Warning: no user deleted");

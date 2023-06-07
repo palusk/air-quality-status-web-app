@@ -30,21 +30,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        response.setContentType("text/html");
-        response.setCharacterEncoding("utf-8");
-        ServletContext context = getServletContext();
-        PrintWriter out = response.getWriter();
-
-        HttpSession sesja = request.getSession();
-
-        Account user = (Account) sesja.getAttribute("user");
-        if(user == null){
-            user = new Account();
-            sesja.setAttribute("user", user);
-        }
-
     }
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

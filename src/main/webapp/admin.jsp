@@ -39,16 +39,17 @@ Driver database = new Driver();
                 <td><%= user.getEmail() %></td>
                 <td><%= user.getIdRegion() %></td>
                 <td><%= user.getUprawnienia() %></td>
-                <td>
-                    <button onclick="database.removeUser(<%= user.getId() %>)">Usuń</button>
+                <td><form action="admin" method="post">
+                    <button class="btn" type="submit" name="deleteUser" value="<%= user.getId() %>">usun</button></form>
                 </td>
-                <td>
-                    <select id="permissionsDropdown_<%= user.getId() %>">
+                <td><form action="admin" method="post">
+                    <select name="permissionsDropdown_<%= user.getId() %>">
                         <option value="-1">-1</option>
                         <option value="0">0</option>
                         <option value="1">1</option>
                     </select>
-                    <button onclick="database.changePermisions(<%= user.getId() %>,2)">Zmień uprawnienia</button>
+                     <button class="btn" type="submit" name="changePermission" value="<%= user.getId() %>">Zmień uprawnienia</button></form>
+
                 </td>
             </tr>
 
