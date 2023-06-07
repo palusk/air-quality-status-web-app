@@ -1,9 +1,11 @@
 <%@ page import="com.ziecinaplaneta.air.user.Account" %>
 <%@ page import="com.ziecinaplaneta.air.database.Driver" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.sql.PreparedStatement" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
-
+Driver database = new Driver();
 %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +27,6 @@
             </tr>
             <%
                 // Pobierz listę użytkowników z bazy danych
-                Driver database = new Driver();
                 List<Account> users = database.getUsersFromDatabase();
 
                 // Wygeneruj wiersze tabeli na podstawie listy użytkowników
@@ -38,6 +39,17 @@
                 <td><%= user.getEmail() %></td>
                 <td><%= user.getIdRegion() %></td>
                 <td><%= user.getUprawnienia() %></td>
+                <td>
+                    <button onclick="database.removeUser(<%= user.getId() %>)">Usuń</button>
+                </td>
+                <td>
+                    <select id="permissionsDropdown_<%= user.getId() %>">
+                        <option value="-1">-1</option>
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                    </select>
+                    <button onclick="database.changePermisions(<%= user.getId() %>)">Zmień uprawnienia</button>
+                </td>
             </tr>
 
             <% } %>
