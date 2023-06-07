@@ -15,7 +15,7 @@ public class Driver {
 
     public Driver() {
 
-        jdbcUrl = "jdbc:h2:C:/Users/mateu/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
+        jdbcUrl = "jdbc:h2:D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
         username = "admin";
         password = "admin";
 
@@ -250,6 +250,66 @@ public class Driver {
     }
 
 
+    public int selectRegionIdFromUsers(int iduser){
+        try {
+            String query = "SELECT idregion FROM users WHERE iduser = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, iduser);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getInt("idregion");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectRegionIdFromUsers query failed!");
+            return 0;
+        }
+    }
+
+
+    public String selectRegionName(int idregion){
+        try {
+            String query = "SELECT name FROM regions WHERE idregion = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, idregion);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getString("name");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectRegionName query failed!");
+            System.out.println(e);
+            return "Empty region name";
+        }
+    }
+
+    public String selectLatitude(int idregion){
+        try {
+            String query = "SELECT latitude FROM regions WHERE idregion = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, idregion);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getString("latitude");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectLatitude query failed!");
+            System.out.println(e);
+            return "Empty latitude";
+        }
+    }
+
+
+    public String selectLongitude(int idregion){
+        try {
+            String query = "SELECT longitude FROM regions WHERE idregion = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, idregion);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getString("longitude");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectLongitude query failed!");
+            System.out.println(e);
+            return "Empty longitude";
+        }
+    }
 
 
 

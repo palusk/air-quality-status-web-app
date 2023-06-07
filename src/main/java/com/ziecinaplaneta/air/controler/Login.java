@@ -54,9 +54,6 @@ public class Login extends HttpServlet {
 //update
         String changename = request.getParameter("changename");
 
-        String city = request.getParameter("city");
-        String latitude = request.getParameter("latitude");
-        String longitude = request.getParameter("longitude");
 
 //AKCJE
         String logout = request.getParameter("logout");
@@ -104,7 +101,6 @@ public class Login extends HttpServlet {
             } else response.sendRedirect("/air_quality_status_web_app2_war_exploded/register.jsp");
 
         } else if (save != null) {
-            if (!city.isEmpty() && !latitude.isEmpty() && !longitude.isEmpty()) {
 
                 Account user = (Account) session.getAttribute("user");
 
@@ -122,7 +118,7 @@ public class Login extends HttpServlet {
                 //emptyUser.setImie(changename);
                 //session.setAttribute("user", emptyUser);
                // response.sendRedirect("/air_quality_status_web_app2_war_exploded/index.jsp");
-            }
+
 
             out.close();
         }
