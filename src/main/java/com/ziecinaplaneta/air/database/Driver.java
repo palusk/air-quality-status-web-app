@@ -196,6 +196,30 @@ public class Driver {
         }
     }
 
+    public void removeUser(int userId) {
+        try {
+            String sqlUpdate = "DELETE FROM USERS WHERE id = ?";
+            PreparedStatement stm = connection.prepareStatement(sqlUpdate);
+            stm.setInt(1, userId);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e + " Warning: no user deleted");
+        }
+    }
+
+
+
+    public void changePermisions(int userId, int permisions) {
+        try {
+            String sqlUpdate = "DELETE FROM USERS WHERE id = ?";
+            PreparedStatement stm = connection.prepareStatement(sqlUpdate);
+            stm.setInt(1, userId);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e + " Warning: no user deleted");
+        }
+    }
+
     public int selectRegionId(String regionName){
         try {
             String query = "SELECT idregion FROM regions WHERE name = ?";
