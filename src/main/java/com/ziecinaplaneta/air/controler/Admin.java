@@ -31,15 +31,16 @@ public class Admin extends HttpServlet {
 
         System.out.println("test");
 
-        String changeId = request.getParameter("deleteUser");
-        String removeId = request.getParameter("changePermission");
+        String changeId = request.getParameter("changePermission");
+        String removeId = request.getParameter("deleteUser");
 
-        if(!changeId.isEmpty()) {
+        if(changeId != null) {
             String dropdownValue = request.getParameter("permissionsDropdown_" + changeId);
             database.changePermisions(Integer.valueOf(changeId), Integer.valueOf(dropdownValue));
-        } else if(!removeId.isEmpty()){
-
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/admin.jsp");
+        } else if(removeId != null){
             database.removeUser(Integer.valueOf(removeId));
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/admin.jsp");
         }
     }
 }

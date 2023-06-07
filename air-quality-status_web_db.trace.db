@@ -1771,3 +1771,416 @@ Wrong user name or password [28000-214]
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:510)
 	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
 	... 16 more
+2023-06-08 01:28:28 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Kolumna "ID" nie istnieje
+Column "ID" not found; SQL statement:
+DELETE FROM USERS WHERE id = ? [42122-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:502)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	at org.h2.message.DbException.get(DbException.java:223)
+	at org.h2.message.DbException.get(DbException.java:199)
+	at org.h2.expression.ExpressionColumn.getColumnException(ExpressionColumn.java:244)
+	at org.h2.expression.ExpressionColumn.optimizeOther(ExpressionColumn.java:226)
+	at org.h2.expression.ExpressionColumn.optimize(ExpressionColumn.java:213)
+	at org.h2.expression.condition.Comparison.optimize(Comparison.java:139)
+	at org.h2.expression.Expression.optimizeCondition(Expression.java:148)
+	at org.h2.command.dml.Delete.doPrepare(Delete.java:112)
+	at org.h2.command.dml.DataChangeStatement.prepare(DataChangeStatement.java:37)
+	at org.h2.command.Parser.prepareCommand(Parser.java:575)
+	at org.h2.engine.SessionLocal.prepareLocal(SessionLocal.java:631)
+	at org.h2.engine.SessionLocal.prepareCommand(SessionLocal.java:554)
+	at org.h2.jdbc.JdbcConnection.prepareCommand(JdbcConnection.java:1116)
+	at org.h2.jdbc.JdbcPreparedStatement.<init>(JdbcPreparedStatement.java:92)
+	at org.h2.jdbc.JdbcConnection.prepareStatement(JdbcConnection.java:288)
+	at com.ziecinaplaneta.air.database.Driver.removeUser(Driver.java:202)
+	at com.ziecinaplaneta.air.controler.Admin.doPost(Admin.java:41)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:563)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+2023-06-08 01:33:54 database: flush
+org.h2.message.DbException: Błąd ogólny: "org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]" [50000-214]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:395)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:125)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:3318)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:593)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:469)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:4082)
+	at org.h2.mvstore.db.Store.<init>(Store.java:136)
+	at org.h2.engine.Database.<init>(Database.java:324)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at com.ziecinaplaneta.air.database.Driver.<init>(Driver.java:24)
+	at com.ziecinaplaneta.air.controler.Login.doPost(Login.java:38)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:563)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Błąd ogólny: "org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]" [50000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 43 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.FileStore.open(FileStore.java:178)
+	at org.h2.mvstore.FileStore.open(FileStore.java:128)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:452)
+	... 37 more
+2023-06-08 01:42:44 database: flush
+org.h2.message.DbException: Błąd ogólny: "org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]" [50000-214]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.message.DbException.convert(DbException.java:395)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:125)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:3318)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:593)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:469)
+	at org.h2.mvstore.MVStore$Builder.open(MVStore.java:4082)
+	at org.h2.mvstore.db.Store.<init>(Store.java:136)
+	at org.h2.engine.Database.<init>(Database.java:324)
+	at org.h2.engine.Engine.openSession(Engine.java:92)
+	at org.h2.engine.Engine.openSession(Engine.java:222)
+	at org.h2.engine.Engine.createSession(Engine.java:201)
+	at org.h2.engine.SessionRemote.connectEmbeddedOrServer(SessionRemote.java:338)
+	at org.h2.jdbc.JdbcConnection.<init>(JdbcConnection.java:122)
+	at org.h2.Driver.connect(Driver.java:59)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:683)
+	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
+	at com.ziecinaplaneta.air.database.Driver.<init>(Driver.java:24)
+	at com.ziecinaplaneta.air.controler.Login.doPost(Login.java:38)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:563)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:631)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:493)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:676)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:390)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:1589)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Błąd ogólny: "org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]"
+General error: "org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]" [50000-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 43 more
+Caused by: org.h2.mvstore.MVStoreException: The file is locked: D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db.mv.db [2.1.214/7]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.FileStore.open(FileStore.java:178)
+	at org.h2.mvstore.FileStore.open(FileStore.java:128)
+	at org.h2.mvstore.MVStore.<init>(MVStore.java:452)
+	... 37 more
+2023-06-08 01:43:40 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:40 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:40 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:40 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:40 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:43 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:43 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:43 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:43 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:43 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:43 jdbc[6]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:45 jdbc[7]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:45 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:45 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:45 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:45 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:45 jdbc[8]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:47 jdbc[9]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:47 jdbc[9]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:47 jdbc[9]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:47 jdbc[9]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:43:47 jdbc[9]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:45:02 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:45:02 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:45:02 jdbc[12]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:48:16 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:400)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:125)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:3318)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:593)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1529)
+	at org.h2.mvstore.MVStore.store(MVStore.java:1496)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:1469)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:1458)
+	at org.h2.mvstore.tx.TransactionStore.close(TransactionStore.java:365)
+	at org.h2.mvstore.db.Store.close(Store.java:371)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1261)
+	at org.h2.engine.Database.closeImpl(Database.java:1225)
+	at org.h2.engine.Database.close(Database.java:1144)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+	Suppressed: java.lang.NoClassDefFoundError: java/lang/reflect/InvocationTargetException
+		at org.h2.message.DbException.convert(DbException.java:384)
+		... 14 more
+	Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.lang.reflect.InvocationTargetException]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1447)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1284)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1245)
+		... 15 more
+	Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.lang.reflect.InvocationTargetException]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1457)
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1445)
+		... 17 more
+Caused by: java.sql.SQLException: GeneralError
+	... 15 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: java/util/concurrent/Future [2.1.214/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	... 11 more
+Caused by: java.lang.NoClassDefFoundError: java/util/concurrent/Future
+	at org.h2.mvstore.MVStore.submitOrRun(MVStore.java:1541)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1517)
+	... 10 more
+Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.Future]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1447)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1284)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1245)
+	... 12 more
+Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.Future]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1457)
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1445)
+	... 14 more
+2023-06-08 01:48:16 database: close
+org.h2.message.DbException: Błąd wejścia/wyjścia: "Closing"
+IO Exception: "Closing" [90028-214]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.close(Store.java:402)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1261)
+	at org.h2.engine.Database.closeImpl(Database.java:1225)
+	at org.h2.engine.Database.close(Database.java:1144)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Błąd wejścia/wyjścia: "Closing"
+IO Exception: "Closing" [90028-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 7 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: java/util/concurrent/Future [2.1.214/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1529)
+	at org.h2.mvstore.MVStore.store(MVStore.java:1496)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:1469)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:1458)
+	at org.h2.mvstore.tx.TransactionStore.close(TransactionStore.java:365)
+	at org.h2.mvstore.db.Store.close(Store.java:371)
+	... 5 more
+Caused by: java.lang.NoClassDefFoundError: java/util/concurrent/Future
+	at org.h2.mvstore.MVStore.submitOrRun(MVStore.java:1541)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1517)
+	... 10 more
+Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.Future]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1447)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1284)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1245)
+	... 12 more
+Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.Future]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1457)
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1445)
+	... 14 more
+2023-06-08 01:49:11 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:49:11 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:49:11 jdbc[5]: exception
+org.h2.jdbc.JdbcSQLNonTransientException: Dane nie są dostępne
+No data is available [2000-214]
+2023-06-08 01:49:33 database: flush
+org.h2.message.DbException: GeneralError
+	at org.h2.message.DbException.convert(DbException.java:400)
+	at org.h2.mvstore.db.Store.lambda$new$0(Store.java:125)
+	at org.h2.mvstore.MVStore.handleException(MVStore.java:3318)
+	at org.h2.mvstore.MVStore.panic(MVStore.java:593)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1529)
+	at org.h2.mvstore.MVStore.store(MVStore.java:1496)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:1469)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:1458)
+	at org.h2.mvstore.tx.TransactionStore.close(TransactionStore.java:365)
+	at org.h2.mvstore.db.Store.close(Store.java:371)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1261)
+	at org.h2.engine.Database.closeImpl(Database.java:1225)
+	at org.h2.engine.Database.close(Database.java:1144)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+	Suppressed: java.lang.NoClassDefFoundError: java/lang/reflect/InvocationTargetException
+		at org.h2.message.DbException.convert(DbException.java:384)
+		... 14 more
+	Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.lang.reflect.InvocationTargetException]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1447)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1284)
+		at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1245)
+		... 15 more
+	Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.lang.reflect.InvocationTargetException]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1457)
+		at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1445)
+		... 17 more
+Caused by: java.sql.SQLException: GeneralError
+	... 15 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: java/util/concurrent/Future [2.1.214/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	... 11 more
+Caused by: java.lang.NoClassDefFoundError: java/util/concurrent/Future
+	at org.h2.mvstore.MVStore.submitOrRun(MVStore.java:1541)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1517)
+	... 10 more
+Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.Future]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1447)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1284)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1245)
+	... 12 more
+Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.Future]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1457)
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1445)
+	... 14 more
+2023-06-08 01:49:33 database: close
+org.h2.message.DbException: Błąd wejścia/wyjścia: "Closing"
+IO Exception: "Closing" [90028-214]
+	at org.h2.message.DbException.get(DbException.java:212)
+	at org.h2.mvstore.db.Store.close(Store.java:402)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1261)
+	at org.h2.engine.Database.closeImpl(Database.java:1225)
+	at org.h2.engine.Database.close(Database.java:1144)
+	at org.h2.engine.OnExitDatabaseCloser.onShutdown(OnExitDatabaseCloser.java:85)
+	at org.h2.engine.OnExitDatabaseCloser.run(OnExitDatabaseCloser.java:114)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: Błąd wejścia/wyjścia: "Closing"
+IO Exception: "Closing" [90028-214]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:554)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:477)
+	... 7 more
+Caused by: org.h2.mvstore.MVStoreException: java.lang.NoClassDefFoundError: java/util/concurrent/Future [2.1.214/3]
+	at org.h2.mvstore.DataUtils.newMVStoreException(DataUtils.java:1004)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1529)
+	at org.h2.mvstore.MVStore.store(MVStore.java:1496)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:1469)
+	at org.h2.mvstore.MVStore.commit(MVStore.java:1458)
+	at org.h2.mvstore.tx.TransactionStore.close(TransactionStore.java:365)
+	at org.h2.mvstore.db.Store.close(Store.java:371)
+	... 5 more
+Caused by: java.lang.NoClassDefFoundError: java/util/concurrent/Future
+	at org.h2.mvstore.MVStore.submitOrRun(MVStore.java:1541)
+	at org.h2.mvstore.MVStore.storeNow(MVStore.java:1517)
+	... 10 more
+Caused by: java.lang.ClassNotFoundException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.Future]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1447)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1284)
+	at org.apache.catalina.loader.WebappClassLoaderBase.loadClass(WebappClassLoaderBase.java:1245)
+	... 12 more
+Caused by: java.lang.IllegalStateException: Illegal access: this web application instance has been stopped already. Could not load [java.util.concurrent.Future]. The following stack trace is thrown for debugging purposes as well as to attempt to terminate the thread which caused the illegal access.
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForResourceLoading(WebappClassLoaderBase.java:1457)
+	at org.apache.catalina.loader.WebappClassLoaderBase.checkStateForClassLoading(WebappClassLoaderBase.java:1445)
+	... 14 more

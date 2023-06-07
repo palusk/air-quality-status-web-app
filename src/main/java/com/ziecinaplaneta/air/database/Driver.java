@@ -198,7 +198,7 @@ public class Driver {
 
     public void removeUser(int userId) {
         try {
-            String sqlUpdate = "DELETE FROM USERS WHERE id = ?";
+            String sqlUpdate = "DELETE FROM users WHERE iduser = ?";
             PreparedStatement stm = connection.prepareStatement(sqlUpdate);
             stm.setInt(1, userId);
             stm.executeUpdate();
@@ -211,7 +211,7 @@ public class Driver {
 
     public void changePermisions(int userId, int permisions) {
         try {
-            String sqlUpdate = "UPDATE USERS PERMISSIONS = ? WHERE IDUSER = ?";
+            String sqlUpdate = "UPDATE users SET PERMISSIONS = ? WHERE IDUSER = ?";
             PreparedStatement stm = connection.prepareStatement(sqlUpdate);
             stm.setInt(1, permisions);
             stm.setInt(2, userId);

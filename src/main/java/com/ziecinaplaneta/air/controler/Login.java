@@ -91,14 +91,9 @@ public class Login extends HttpServlet {
 
             if (!regusername.isEmpty() && !regpassword.isEmpty() && !regname.isEmpty() && !regemail.isEmpty()) {
                 if(registration(regemail, regname, regusername, regpassword, database)){
-                    Account newUser = (Account) session.getAttribute("user");
-                    newUser.setImie(regname);
-                    newUser.setEmail(regemail);
-                    session.setAttribute("user", newUser);
-                    newUser.setUprawnienia(1);
-                    response.sendRedirect("/air_quality_status_web_app2_war_exploded/index.jsp");
-                }else response.sendRedirect("/air_quality_status_web_app2_war_exploded/register.jsp");
-            } else response.sendRedirect("/air_quality_status_web_app2_war_exploded/register.jsp");
+                    response.sendRedirect("/air_quality_status_web_app2_war_exploded/login.jsp");
+                }else response.sendRedirect("/air_quality_status_web_app2_war_exploded/registration.jsp");
+            } else response.sendRedirect("/air_quality_status_web_app2_war_exploded/registration.jsp");
 
         } else if (save != null) {
 
