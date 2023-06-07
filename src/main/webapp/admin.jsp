@@ -48,7 +48,7 @@ Driver database = new Driver();
                         <option value="0">0</option>
                         <option value="1">1</option>
                     </select>
-                    <button onclick="database.changePermisions(<%= user.getId() %>)">Zmień uprawnienia</button>
+                    <button onclick="database.changePermisions(<%= user.getId(),  %>)">Zmień uprawnienia</button>
                 </td>
             </tr>
 
