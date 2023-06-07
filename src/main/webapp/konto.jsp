@@ -12,6 +12,9 @@
     String email = user.getEmail();
     String userName = user.getLogin();
 
+
+    Driver database = new Driver();
+
 %>
 <!DOCTYPE html>
 <html>
@@ -28,14 +31,11 @@
             <p2>Email:  <%= email %></p2></br></br>
             <p2>Nazwa użytkownika:  <%= userName %></p2>  </br></br>
 
-            <label for="city">Miasto:</label>
-            <input type="text" id="city" name="city" placeholder="Wprowadź miasto" required>
+            <label for="region">Miasto:</label>
+            <input type="text" id="region" name="region" placeholder="Wybierz region Krakowa" required>
 
-            <label for="latitude">Szerokość geograficzna:</label>
-            <input type="text" id="latitude" name="latitude" placeholder="Wprowadź szerokość geograficzną" required>
-
-            <label for="longitude">Długość geograficzna:</label>
-            <input type="text" id="longitude" name="longitude" placeholder="Wprowadź długość geograficzną" required>
+            <p2>Szerokość geograficzna:  </p2> </br></br>
+            <p2>Długość geograficzna:  </p2> </br></br>
 
             <button class="btn" type="submit" name="save" value="save">Zapisz</button>
         </form>

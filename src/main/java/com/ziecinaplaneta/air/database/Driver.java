@@ -144,21 +144,6 @@ public class Driver {
     }
 
 
-    public boolean insertDefaultLocation(String latitude, String longitude, int iduser){
-        try {
-            String sqlUpdate = "INSERT INTO DEFAULT_LOCATION (latitude, longitude, iduser) VALUES(?,?,?)";
-            PreparedStatement stm = connection.prepareStatement(sqlUpdate);
-            stm.setString(1, latitude);
-            stm.setString(2, longitude);
-            stm.setInt(3, iduser);
-            stm.executeUpdate();
-            return true;
-        } catch (SQLException e) {
-            System.out.println(e + " Warning: default location insert failed!");
-            return false;
-        }
-    }
-
     public String getNameByUsername(String username){
         try {
             String query = "SELECT name FROM users WHERE username = ?";
@@ -210,5 +195,37 @@ public class Driver {
             return users;
         }
     }
+
+    public int selectRegionId(String regionName){
+        try {
+            String query = "SELECT idregion FROM regions WHERE name = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setString(1, regionName);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getInt("idregion");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectRegionId query failed!");
+            return 0;
+        }
+    }
+
+    public boolean insertIdRegionIntoUsers(int idregion, int iduser){
+        try {
+            String sqlUpdate = "UPDATE users SET idregion = ? WHERE iduser = ?";
+            PreparedStatement stm = connection.prepareStatement(sqlUpdate);
+            stm.setInt(1, idregion);
+            stm.setInt(2, iduser);
+            stm.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println(e + " Warning: insertIdRegionIntoUsers failed!");
+            return false;
+        }
+    }
+
+
+
+
 
 }
