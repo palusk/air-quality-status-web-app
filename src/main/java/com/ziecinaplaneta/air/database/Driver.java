@@ -338,4 +338,39 @@ public class Driver {
         }
     }
 
+    public void removeData(int dataId) {
+        try {
+            String sqlUpdate = "DELETE FROM FROM AIR_QUALITY_HISTORY WHERE IDHISTORY = ?";
+            PreparedStatement stm = connection.prepareStatement(sqlUpdate);
+            stm.setInt(1, dataId);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e + " Warning: no data deleted");
+        }
+    }
+
+    public void updateAirQualityHistory(int idHistory, double latitude, double longitude, String city, String state,
+                                        String country, double temperatureCelsius, int humidityPercent, int airQualityAQI,
+                                        String date) {
+        try {
+            String sqlUpdate = "UPDATE AIR_QUALITY_HISTORY SET LATITUDE = ?, LONGITUDE = ?, CITY = ?, STATE = ?, " +
+                    "COUNTRY = ?, TEMPERATURECELSIUS = ?, HUMIDITYPERCENT = ?, AIRQUALITYAQI = ?, DATE = ? " +
+                    "WHERE IDHISTORY = ?";
+            PreparedStatement stm = connection.prepareStatement(sqlUpdate);
+            stm.setDouble(1, latitude);
+            stm.setDouble(2, longitude);
+            stm.setString(3, city);
+            stm.setString(4, state);
+            stm.setString(5, country);
+            stm.setDouble(6, temperatureCelsius);
+            stm.setInt(7, humidityPercent);
+            stm.setInt(8, airQualityAQI);
+            stm.setString(9, date);
+            stm.setInt(10, idHistory);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e + " Warning: no data updated");
+        }
+    }
+
 }
