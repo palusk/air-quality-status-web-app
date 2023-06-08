@@ -1,8 +1,6 @@
 <%@ page import="com.ziecinaplaneta.air.user.Account" %>
 <%@ page import="com.ziecinaplaneta.air.database.Driver" %>
 <%@ page import="java.util.List" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
 Driver database = new Driver();
