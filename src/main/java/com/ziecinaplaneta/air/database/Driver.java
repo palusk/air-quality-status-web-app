@@ -373,4 +373,33 @@ public class Driver {
         }
     }
 
+    public void insertAirQualityHistory(int idHistory, double latitude, double longitude, String city, String state,
+                                        String country, double temperatureCelsius, int humidityPercent, int airQualityAQI,
+                                        String date) {
+
+        try{
+        String query = "SELECT * FROM AIR_QUALITY_HISTORY WHERE idHistory = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, idHistory);
+            ResultSet result = stm.executeQuery();
+            if(!result.next()) {
+                String sqlInsert = "INSERT INTO AIR_QUALITY_HISTORY (IDHISTORY, LATITUDE, LONGITUDE, CITY, STATE, COUNTRY, TEMPERATURECELSIUS, HUMIDITYPERCENT, AIRQUALITYAQI, DATE) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement stm2 = connection.prepareStatement(sqlInsert);
+                stm2.setInt(1, idHistory);
+                stm2.setDouble(2, latitude);
+                stm2.setDouble(3, longitude);
+                stm2.setString(4, city);
+                stm2.setString(5, state);
+                stm2.setString(6, country);
+                stm2.setDouble(7, temperatureCelsius);
+                stm2.setInt(8, humidityPercent);
+                stm2.setInt(9, airQualityAQI);
+                stm2.setString(10, date);
+                stm2.executeUpdate();
+            }} catch (SQLException e) {
+            System.out.println(e + " Warning: no data updated");
+        }
+    }
+
 }
