@@ -8,9 +8,18 @@ Driver database = new Driver();
 <!DOCTYPE html>
 <html>
 <head>
+
     <title>Konto</title>
+    <link rel="stylesheet" type="text/css" href="index_style.css">
     <link rel="stylesheet" type="text/css" href="konto_style.css">
 </head>
+<header class="header">
+    <a  href="index.jsp"><img id="logobig" src="img/logo.png" alt="logo"></a>
+    <ul id="textMenu">
+        <li> <a  href="admin.jsp">ADMINISTRATION</a></li>
+        <li> <a  href="data.jsp">AIR DATA</a></li>
+    </ul>
+</header>
 <body><div class="container">
     <div class="user-info">
         <h1>Lista użytkowników</h1>

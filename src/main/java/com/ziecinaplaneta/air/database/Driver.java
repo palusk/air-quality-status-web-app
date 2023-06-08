@@ -1,5 +1,6 @@
 package com.ziecinaplaneta.air.database;
 import com.ziecinaplaneta.air.user.Account;
+import com.ziecinaplaneta.air.data.AirInfo;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -14,7 +15,7 @@ public class Driver {
 
     public Driver() {
 
-        jdbcUrl = "jdbc:h2:D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
+        jdbcUrl = "jdbc:h2:C:/Users/mateu/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
         username = "admin";
         password = "admin";
 
@@ -307,6 +308,33 @@ public class Driver {
             System.out.println("Warning: selectLongitude query failed!");
             System.out.println(e);
             return "Empty longitude";
+        }
+    }
+
+    public List<AirInfo> getAirDataDatabase() {
+        List<AirInfo> data = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM AIR_QUALITY_HISTORY";
+            PreparedStatement stm = connection.prepareStatement(query);
+            ResultSet result = stm.executeQuery();
+            while (result.next()){
+                data.add(new AirInfo(
+                        result.getInt("IDHISTORY"),
+                        result.getDouble("LATITUDE"),
+                        result.getDouble("LONGITUDE"),
+                        result.getString("CITY"),
+                        result.getString("STATE"),
+                        result.getString("COUNTRY"),
+                        result.getInt("TEMPERATURECELSIUS"),
+                        result.getInt("HUMIDITYPERCENT"),
+                        result.getInt("AIRQUALITYAQI"),
+                        result.getString("DATE")
+                ));
+            }
+            return data;
+        } catch (SQLException e) {
+            System.out.println(e+"Warning: no data load!");
+            return data;
         }
     }
 
