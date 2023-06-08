@@ -12,7 +12,6 @@ public class Driver {
     static String password;
     static Connection connection;
 
-
     public Driver() {
 
         jdbcUrl = "jdbc:h2:D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
@@ -310,7 +309,5 @@ public class Driver {
             return "Empty longitude";
         }
     }
-
-
 
 }

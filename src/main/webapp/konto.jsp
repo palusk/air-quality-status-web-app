@@ -12,11 +12,9 @@
     String email = user.getEmail();
     String userName = user.getLogin();
 
-
     Driver database = new Driver();
 
     int iduser = database.getUserId(userName);
-
     int regionID = database.selectRegionIdFromUsers(iduser);
     String regionName = database.selectRegionName(regionID);
     String latitude = database.selectLatitude(regionID);
