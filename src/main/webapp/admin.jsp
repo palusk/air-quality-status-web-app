@@ -26,10 +26,7 @@ Driver database = new Driver();
                 <th>Uprawnienia</th>
             </tr>
             <%
-                // Pobierz listę użytkowników z bazy danych
                 List<Account> users = database.getUsersFromDatabase();
-
-                // Wygeneruj wiersze tabeli na podstawie listy użytkowników
                 for (Account user : users) {
             %>
             <tr>
@@ -49,10 +46,8 @@ Driver database = new Driver();
                         <option value="1">1</option>
                     </select>
                      <button class="btn" type="submit" name="changePermission" value="<%= user.getId() %>">Zmień uprawnienia</button></form>
-
                 </td>
             </tr>
-
             <% } %>
         </table>
         </form>
