@@ -37,9 +37,6 @@
             <li> <a  href="admin.jsp">ADMINISTRATION</a></li>
             <% } %>
 
-
-            <li> <a  href="checkair.jsp">check air</a></li>
-
         </ul>
     </header>
     <div id="interesting-facts">

@@ -23,7 +23,7 @@ public class Admin extends HttpServlet {
         String removeUserId = request.getParameter("deleteUser");
         String removeDataId = request.getParameter("deleteData");
         String changeDataId = request.getParameter("changeData");
-
+        String addData = request.getParameter("addData");
 
         if(changeUserId != null) {
             String dropdownValue = request.getParameter("permissionsDropdown_" + changeUserId);
@@ -50,6 +50,23 @@ public class Admin extends HttpServlet {
             database.updateAirQualityHistory(idHistory, latitude, longitude, city, state, country, temperatureCelsius,
                     humidityPercent, airQualityAQI, date);
             response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
+        }else if(addData != null){
+
+            String latitude = request.getParameter("latitude");
+            String longitude = request.getParameter("longitude");
+            String city = request.getParameter("city");
+            String state = request.getParameter("state");
+            String country = request.getParameter("country");
+            String temperature = request.getParameter("temperature");
+            String humidity = request.getParameter("humidity");
+            String airQuality = request.getParameter("airQuality");
+            String date = request.getParameter("date");
+
+            database.insertAirQualityHistory(Double.valueOf(latitude), Double.valueOf(longitude), city, state, country,
+                    Integer.valueOf(temperature), Integer.valueOf(humidity),  Integer.valueOf(airQuality), date);
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
         }
+
+
     }
 }

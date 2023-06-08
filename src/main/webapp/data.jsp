@@ -71,6 +71,22 @@
         <% } %>
       </table>
     </form>
+    <form action="admin" method="post">
+    <tr>
+      <td><input type="text" name="latitude" value="Latitude"></td>
+      <td><input type="text" name="longitude" value="Longitude"></td>
+      <td><input type="text" name="city" value="City"></td>
+      <td><input type="text" name="state" value="State"></td>
+      <td><input type="text" name="country" value="Country"></td>
+      <td><input type="text" name="temperature" value="Temperature (Celsius)"></td>
+      <td><input type="text" name="humidity" value="Humidity (%)"></td>
+      <td><input type="text" name="airQuality" value="Air Quality (AQI)"></td>
+      <td><input type="text" name="date" value="Date"></td>
+      <button class="btn" type="submit" name="addData" value="addData">
+        dodaj dane
+      </button>
+    </tr>
+    </form>
   </div>
 </div>
 </body>
