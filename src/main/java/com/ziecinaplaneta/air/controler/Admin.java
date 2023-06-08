@@ -1,14 +1,10 @@
 package com.ziecinaplaneta.air.controler;
-import com.ziecinaplaneta.air.database.Driver;
-import com.ziecinaplaneta.air.user.Account;
 
+import com.ziecinaplaneta.air.database.Driver;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-
 import java.io.IOException;
-import java.io.PrintWriter;
-
 
 @WebServlet(name = "admin", value = "/admin")
 public class Admin extends HttpServlet {
@@ -16,16 +12,12 @@ public class Admin extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
         Driver database = new Driver();
-
-        System.out.println("test");
 
         String changeId = request.getParameter("changePermission");
         String removeId = request.getParameter("deleteUser");

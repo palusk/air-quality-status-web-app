@@ -29,7 +29,6 @@
     <input type="password" name="regpassword" placeholder="Password" required/>
   </div>
 
-
   <div class="form-field">
 
     <a href="login.jsp"><button class="btn" type="button">Zaloguj</button></a>
