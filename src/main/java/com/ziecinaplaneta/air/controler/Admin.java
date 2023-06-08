@@ -25,10 +25,6 @@ public class Admin extends HttpServlet {
 
         Driver database = new Driver();
 
-        PrintWriter out = response.getWriter();
-        ServletContext context = getServletContext();
-        HttpSession session = request.getSession();
-
         System.out.println("test");
 
         String changeId = request.getParameter("changePermission");
