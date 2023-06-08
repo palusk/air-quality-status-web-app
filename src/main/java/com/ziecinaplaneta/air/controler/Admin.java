@@ -22,7 +22,7 @@ public class Admin extends HttpServlet {
         String changeUserId = request.getParameter("changePermission");
         String removeUserId = request.getParameter("deleteUser");
         String removeDataId = request.getParameter("deleteData");
-        String changeDataId = request.getParameter("deleteData");
+        String changeDataId = request.getParameter("changeData");
 
 
         if(changeUserId != null) {

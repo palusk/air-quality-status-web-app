@@ -340,7 +340,7 @@ public class Driver {
 
     public void removeData(int dataId) {
         try {
-            String sqlUpdate = "DELETE FROM FROM AIR_QUALITY_HISTORY WHERE IDHISTORY = ?";
+            String sqlUpdate = "DELETE FROM AIR_QUALITY_HISTORY WHERE IDHISTORY = ?";
             PreparedStatement stm = connection.prepareStatement(sqlUpdate);
             stm.setInt(1, dataId);
             stm.executeUpdate();
@@ -373,29 +373,30 @@ public class Driver {
         }
     }
 
-    public void insertAirQualityHistory(int idHistory, double latitude, double longitude, String city, String state,
+    public void insertAirQualityHistory(double latitude, double longitude, String city, String state,
                                         String country, double temperatureCelsius, int humidityPercent, int airQualityAQI,
                                         String date) {
 
         try{
-        String query = "SELECT * FROM AIR_QUALITY_HISTORY WHERE idHistory = ?";
+        String query = "SELECT * FROM AIR_QUALITY_HISTORY WHERE latitude = ? AND longitude = ? AND date = ?";
             PreparedStatement stm = connection.prepareStatement(query);
-            stm.setInt(1, idHistory);
+            stm.setDouble(1, latitude);
+            stm.setDouble(2, longitude);
+            stm.setString(3, date);
             ResultSet result = stm.executeQuery();
             if(!result.next()) {
-                String sqlInsert = "INSERT INTO AIR_QUALITY_HISTORY (IDHISTORY, LATITUDE, LONGITUDE, CITY, STATE, COUNTRY, TEMPERATURECELSIUS, HUMIDITYPERCENT, AIRQUALITYAQI, DATE) " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                String sqlInsert = "INSERT INTO AIR_QUALITY_HISTORY (LATITUDE, LONGITUDE, CITY, STATE, COUNTRY, TEMPERATURECELSIUS, HUMIDITYPERCENT, AIRQUALITYAQI, DATE) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement stm2 = connection.prepareStatement(sqlInsert);
-                stm2.setInt(1, idHistory);
-                stm2.setDouble(2, latitude);
-                stm2.setDouble(3, longitude);
-                stm2.setString(4, city);
-                stm2.setString(5, state);
-                stm2.setString(6, country);
-                stm2.setDouble(7, temperatureCelsius);
-                stm2.setInt(8, humidityPercent);
-                stm2.setInt(9, airQualityAQI);
-                stm2.setString(10, date);
+                stm2.setDouble(1, latitude);
+                stm2.setDouble(2, longitude);
+                stm2.setString(3, city);
+                stm2.setString(4, state);
+                stm2.setString(5, country);
+                stm2.setDouble(6, temperatureCelsius);
+                stm2.setInt(7, humidityPercent);
+                stm2.setInt(8, airQualityAQI);
+                stm2.setString(9, date);
                 stm2.executeUpdate();
             }} catch (SQLException e) {
             System.out.println(e + " Warning: no data updated");
