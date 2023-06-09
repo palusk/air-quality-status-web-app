@@ -15,36 +15,15 @@ public class Driver {
 
     public Driver() {
 
-        jdbcUrl = "jdbc:h2:C:/Users/mateu/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
+        jdbcUrl = "jdbc:h2:D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
         username = "admin";
         password = "admin";
 
         try {
             Class.forName("org.h2.Driver");
             connection = DriverManager.getConnection(jdbcUrl, username, password);
-
-            // Statement statement = connection.createStatement();
-
-            /* TEMPLATE DO ZAPYTAŃ SQL:
-            String sqlUpdate = "INSERT INTO USERS (name, login, password, permissions) VALUES ('Admin', 'admin', 'admin', -1)";
-
-            String sqlQuery = "SELECT * FROM USERS";
-
-            statement.executeUpdate(sqlUpdate);
-
-            ResultSet resultSet = statement.executeQuery(sqlQuery);
-
-            while (resultSet.next()) {
-                int ID = resultSet.getInt("iduser");
-                String name = resultSet.getString("name");
-                System.out.println("StudentID: " + ID + " Name: " + name);
-            }
-
-             */
-
             //---- TODO
             // connection.close();
-
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -402,5 +381,35 @@ public class Driver {
             System.out.println(e + " Warning: no data updated");
         }
     }
+
+
+    public int selectUserPermissionLevel(String username){
+        try {
+            String query = "SELECT permissions FROM users WHERE username = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setString(1, username);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getInt("permissions");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectUserPermissionLevel query failed!");
+            return 0;
+        }
+    }
+
+
+    public void insertPermisionsRegistration(String regusername) {
+        try {
+            String sqlUpdate = "UPDATE users SET permissions = 1 WHERE username = ?";
+            PreparedStatement stm = connection.prepareStatement(sqlUpdate);
+            stm.setString(1, regusername);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e + " insertPermisionsRegistration failed!");
+        }
+    }
+
+
+
 
 }

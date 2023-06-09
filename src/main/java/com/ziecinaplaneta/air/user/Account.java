@@ -6,7 +6,7 @@ public class Account {
     private String imie = "";
     private String email = "";
     private int wiek = 0;
-    private int uprawnienia = -1;
+    private int uprawnienia = 0;
 
     public int getId() {
         return id;
