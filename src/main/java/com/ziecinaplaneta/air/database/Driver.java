@@ -1,6 +1,7 @@
 package com.ziecinaplaneta.air.database;
 import com.ziecinaplaneta.air.user.Account;
 import com.ziecinaplaneta.air.data.AirInfo;
+import com.ziecinaplaneta.air.data.RegionsInfo;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
@@ -406,6 +407,28 @@ public class Driver {
             stm.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e + " insertPermisionsRegistration failed!");
+        }
+    }
+
+
+    public List<RegionsInfo> getRegionsDatabase() {
+        List<RegionsInfo> data = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM REGIONS";
+            PreparedStatement stm = connection.prepareStatement(query);
+            ResultSet result = stm.executeQuery();
+            while (result.next()){
+                data.add(new RegionsInfo(
+                        result.getInt("IDREGION"),
+                        result.getString("NAME"),
+                        result.getString("LATITUDE"),
+                        result.getString("LONGITUDE")
+                ));
+            }
+            return data;
+        } catch (SQLException e) {
+            System.out.println(e+"Warning: no Regions data load!");
+            return data;
         }
     }
 

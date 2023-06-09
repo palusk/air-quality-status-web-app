@@ -5,6 +5,8 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @WebServlet(name = "admin", value = "/admin")
 public class Admin extends HttpServlet {
@@ -24,6 +26,7 @@ public class Admin extends HttpServlet {
         String removeDataId = request.getParameter("deleteData");
         String changeDataId = request.getParameter("changeData");
         String addData = request.getParameter("addData");
+        String regionUpdateData = request.getParameter("regionUpdateData");
 
         if(changeUserId != null) {
             String dropdownValue = request.getParameter("permissionsDropdown_" + changeUserId);
@@ -67,6 +70,31 @@ public class Admin extends HttpServlet {
             response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
         }
 
+            String latitude = request.getParameter("latR");
+            String longitude = request.getParameter("lonR");
+            String city = request.getParameter("cityR");
+            String state = request.getParameter("stateR");
+            String country = request.getParameter("countryR");
+            String temperature = request.getParameter("temperatureR");
+            String humidity = request.getParameter("humidityR");
+            String airQuality = request.getParameter("airQualityR");
 
-    }
+            LocalDate currentDate = LocalDate.now();
+
+            // Create a DateTimeFormatter for the desired date format
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+
+            // Format the current date using the formatter
+            String date = currentDate.format(formatter);
+
+            if(!latitude.isEmpty()) {
+
+                database.insertAirQualityHistory(Double.valueOf(latitude), Double.valueOf(longitude), city, state, country,
+                        Integer.valueOf(temperature), Integer.valueOf(humidity), Integer.valueOf(airQuality), date);
+                response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
+
+            }else System.out.println("DLACZEGO");
+        }
+
+
 }

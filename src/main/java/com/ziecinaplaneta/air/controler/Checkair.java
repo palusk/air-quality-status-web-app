@@ -16,7 +16,7 @@ public class Checkair extends HttpServlet {
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("srvleeeeeeeey");
+       // System.out.println("srvleeeeeeeey");
         Driver database = new Driver();
 
         String city = request.getParameter("city");
