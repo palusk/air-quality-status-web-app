@@ -11,6 +11,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @WebServlet(name = "admin", value = "/admin")
 public class Admin extends HttpServlet {
@@ -96,6 +97,7 @@ public class Admin extends HttpServlet {
 
                 database.insertAirQualityHistory(airInfo.getLatitude(), airInfo.getLongitude(), airInfo.getCity(), airInfo.getState(), airInfo.getCountry(),
                         airInfo.getTemperatureCelsius(), airInfo.getHumidityPercent(), airInfo.getAirQualityAQI(), date);
+
 
             }
             response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
