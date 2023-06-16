@@ -91,79 +91,21 @@
 
     <form id="region-form" action="admin" method="post">
 
-      <input type="hidden" id="lat-input" name="latR">
-      <input type="hidden" id="lon-input" name="lonR">
+<%--      <input type="hidden" id="lat-input" name="latR">--%>
+<%--      <input type="hidden" id="lon-input" name="lonR">--%>
 
-      <input type="hidden" id="city-input" name="cityR">
-      <input type="hidden" id="state-input" name="stateR">
-      <input type="hidden" id="country-input" name="countryR">
-      <input type="hidden" id="temperature-input" name="temperatureR">
-      <input type="hidden" id="humidity-input" name="humidityR">
-      <input type="hidden" id="airQuality-input" name="airQualityR">
-      <button class="btn" type="submit" name="regionUpdateData" value="regionUpdateData">Zaktualizuj dane dla każdego regionu</button>
+<%--      <input type="hidden" id="city-input" name="cityR">--%>
+<%--      <input type="hidden" id="state-input" name="stateR">--%>
+<%--      <input type="hidden" id="country-input" name="countryR">--%>
+<%--      <input type="hidden" id="temperature-input" name="temperatureR">--%>
+<%--      <input type="hidden" id="humidity-input" name="humidityR">--%>
+<%--      <input type="hidden" id="airQuality-input" name="airQualityR">--%>
+
+
+      <button class="btn" type="submit" name="regionUpdateData">Zaktualizuj dane dla każdego regionu</button>
     </form>
 
-      <script>
 
-         // Funkcja obsługująca formularz
-         $('#region-form').submit(function(event) {
-           event.preventDefault();
-
-           <% List<RegionsInfo> regionsInfo = database.getRegionsDatabase();
-                  for (RegionsInfo region : regionsInfo) { %>
-
-           <% String latitude = region.getLatitude();
-            String longitude = region.getLongitude(); %>
-
-           var lat = '<%=latitude%>';
-          var lon = '<%=longitude%>';
-
-
-// Pobranie danych pogodowych z API
-          var apiKey = '64052ff3-73e2-4bab-9592-06e204bf2df2'; // klucz API
-          var apiUrl = 'https://api.airvisual.com/v2/nearest_city?lat=' + lat + '&lon=' + lon + '&key=' + apiKey;
-
-          $.ajax({
-            url: apiUrl,
-            type: 'GET',
-            success: function(data) {
-// Wyświetlenie danych na stronie
-              var city = data.data.city;
-              var state = data.data.state;
-              var country = data.data.country;
-              var temperature = data.data.current.weather.tp;
-              var humidity = data.data.current.weather.hu;
-              var airQuality= data.data.current.pollution.aqius;
-
-              $('#lat-input').val(lat);
-              $('#lon-input').val(lon);
-              $('#city-input').val(city);
-              $('#state-input').val(state);
-              $('#country-input').val(country);
-              $('#temperature-input').val(temperature);
-              $('#humidity-input').val(humidity);
-              $('#airQuality-input').val(airQuality);
-
-              // var weatherData = 'Miasto: ' + city + '<br>' +
-              //         'Stan: ' + state + '<br>' +
-              //         'Kraj: ' + country + '<br>' +
-              //         'Temperatura: ' + temperature + ' &#8451;<br>' +
-              //         'Wilgotność: ' + humidity + '%<br>' +
-              //         'Jakość powietrza (AQI): ' + airQuality;
-              //
-              // $('#weather-data').html(weatherData);
-
-              // Przesyłanie danych do servletu admin
-              $.post('admin', $('#region-form').serialize());
-              <% } %>
-
-            },
-            error: function() {
-              $('#weather-data').html('<p>Wystąpił błąd podczas pobierania danych pogodowych.</p>');
-            }
-          });
-        });
-      </script>
 
   </div>
 </div>

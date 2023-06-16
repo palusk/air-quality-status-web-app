@@ -1,5 +1,7 @@
 package com.ziecinaplaneta.air.controler;
 
+import com.ziecinaplaneta.air.data.AirInfo;
+import com.ziecinaplaneta.air.data.RegionsInfo;
 import com.ziecinaplaneta.air.database.Driver;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
@@ -7,6 +9,8 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "admin", value = "/admin")
 public class Admin extends HttpServlet {
@@ -68,8 +72,36 @@ public class Admin extends HttpServlet {
             database.insertAirQualityHistory(Double.valueOf(latitude), Double.valueOf(longitude), city, state, country,
                     Integer.valueOf(temperature), Integer.valueOf(humidity),  Integer.valueOf(airQuality), date);
             response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
-        }
 
+        }else if(regionUpdateData != null) {
+
+
+            List<RegionsInfo> regionsInfo = database.getRegionsDatabase();
+            for (RegionsInfo region : regionsInfo) {
+
+                AirInfo airInfo;
+
+                String latitude = region.getLatitude();
+                String longitude = region.getLongitude();
+
+                airInfo = API.getAirData(latitude, longitude);
+
+
+                LocalDate currentDate = LocalDate.now();
+                // Create a DateTimeFormatter for the desired date format
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+                // Format the current date using the formatter
+                String date = currentDate.format(formatter);
+
+
+                database.insertAirQualityHistory(airInfo.getLatitude(), airInfo.getLongitude(), airInfo.getCity(), airInfo.getState(), airInfo.getCountry(),
+                        airInfo.getTemperatureCelsius(), airInfo.getHumidityPercent(), airInfo.getAirQualityAQI(), date);
+
+            }
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
+
+
+            /*
             String latitude = request.getParameter("latR");
             String longitude = request.getParameter("lonR");
             String city = request.getParameter("cityR");
@@ -87,13 +119,21 @@ public class Admin extends HttpServlet {
             // Format the current date using the formatter
             String date = currentDate.format(formatter);
 
-            if(!latitude.isEmpty()) {
+            if (!latitude.isEmpty()) {
 
                 database.insertAirQualityHistory(Double.valueOf(latitude), Double.valueOf(longitude), city, state, country,
                         Integer.valueOf(temperature), Integer.valueOf(humidity), Integer.valueOf(airQuality), date);
                 response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
 
-            }else System.out.println("DLACZEGO");
+            } else System.out.println("DLACZEGO");
+
+            */
+
+
+
+
+        }
+
         }
 
 
