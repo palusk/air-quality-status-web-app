@@ -16,7 +16,7 @@ public class Driver {
 
     public Driver() {
 
-        jdbcUrl = "jdbc:h2:D:/Program Files/IdeaProjects/air-quality-status_web_app2/air-quality-status_web_db";
+        jdbcUrl = "jdbc:h2:C:\\Users\\mateu\\IdeaProjects\\air-quality-status-web-app\\air-quality-status_web_db";
         username = "admin";
         password = "admin";
 

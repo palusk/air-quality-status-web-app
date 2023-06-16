@@ -36,23 +36,6 @@ public class DataParser {
         }
     }
 
-    public static void main(String[] args) {
-        String response = "{\"status\":\"success\",\"data\":{\"city\":\"Chapaev\",\"state\":\"Batys Qazaqstan\",\"country\":\"Kazakhstan\",\"location\":{\"type\":\"Point\",\"coordinates\":[51.16667,50.2]},\"current\":{\"pollution\":{\"ts\":\"2023-06-16T15:00:00.000Z\",\"aqius\":76,\"mainus\":\"p2\",\"aqicn\":34,\"maincn\":\"p2\"},\"weather\":{\"ts\":\"2023-06-16T17:00:00.000Z\",\"tp\":25,\"pr\":1002,\"hu\":49,\"ws\":1.68,\"wd\":115,\"ic\":\"10n\"}}}}";
-
-        DataParser dataParser = new DataParser();
-        dataParser.parseData(response);
-
-        // Wyświetlanie danych
-        System.out.println("City: " + dataParser.getCity());
-        System.out.println("State: " + dataParser.getState());
-        System.out.println("Country: " + dataParser.getCountry());
-        System.out.println("Latitude: " + dataParser.getLatitude());
-        System.out.println("Longitude: " + dataParser.getLongitude());
-        System.out.println("Temperature (°C): " + dataParser.getTemperatureCelsius());
-        System.out.println("Humidity (%): " + dataParser.getHumidityPercent());
-        System.out.println("Air Quality (AQI): " + dataParser.getAirQualityAQI());
-    }
-
     public double getLatitude() {
         return latitude;
     }

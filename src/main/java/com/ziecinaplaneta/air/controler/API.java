@@ -10,6 +10,11 @@ import java.net.URL;
 
 public class API{
 
+    static int counter = 0;
+    static String[] keys = {"64052ff3-73e2-4bab-9592-06e204bf2df2",
+        "f6b71fa4-2eb2-4903-9a75-48c4d67d143d",
+        "7a25e04d-4a52-44ae-9085-d55372d9fba5"};
+
 
     private static String sendGetRequest(String apiUrl) throws IOException {
         URL url = new URL(apiUrl);
@@ -31,10 +36,12 @@ public class API{
 
     public static AirInfo getAirData(String lan, String lon){
         AirInfo data;
-        String apiKey = "64052ff3-73e2-4bab-9592-06e204bf2df2";
         String result = new String();
         try {
-            String apiUrl = "https://api.airvisual.com/v2/nearest_city?lat=" + lan + "&lon=" + lon + "&key=" + apiKey;
+            String apiUrl = "https://api.airvisual.com/v2/nearest_city?lat=" + lan + "&lon=" + lon + "&key=" + keys[counter];
+            if(counter<2)counter++;
+            else counter = 0;
+
             result = sendGetRequest(apiUrl);
             System.out.println(result);
         } catch (IOException e) {
