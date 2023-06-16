@@ -84,8 +84,9 @@ public class Admin extends HttpServlet {
 
                 String latitude = region.getLatitude();
                 String longitude = region.getLongitude();
+                String placeID = region.getPlaceID();
 
-                airInfo = API.getAirData(latitude, longitude);
+                airInfo = API.getAirData(latitude, longitude, placeID);
 
 
                 LocalDate currentDate = LocalDate.now();

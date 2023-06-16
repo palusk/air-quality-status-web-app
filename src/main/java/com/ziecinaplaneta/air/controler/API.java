@@ -34,11 +34,11 @@ public class API{
     }
 
 
-    public static AirInfo getAirData(String lat, String lon){
+    public static AirInfo getAirData(String lat, String lon, String placeID){
         AirInfo data;
         String result = new String();
         try {
-            String apiUrl = "https://api.airvisual.com/v2/nearest_city?lat=" + lat + "&lon=" + lon + "&key=" + keys[counter];
+            String apiUrl = "https://api.airvisual.com/v2/air-quality-map?lat=" + lat + "&lon=" + lon + "&key=" + "&placeId=" + placeID + keys[counter];
             if(counter<2)counter++;
             else counter = 0;
 

@@ -422,7 +422,9 @@ public class Driver {
                         result.getInt("IDREGION"),
                         result.getString("NAME"),
                         result.getString("LATITUDE"),
-                        result.getString("LONGITUDE")
+                        result.getString("LONGITUDE"),
+                        result.getString("PLACEID")
+
                 ));
             }
             return data;

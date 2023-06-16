@@ -6,11 +6,22 @@ public class RegionsInfo {
     private String latitude;
     private String longitude;
 
-    public RegionsInfo(int idRegion, String name, String latitude, String longitude) {
+    public String getPlaceID() {
+        return placeID;
+    }
+
+    public void setPlaceID(String placeID) {
+        this.placeID = placeID;
+    }
+
+    private String placeID;
+
+    public RegionsInfo(int idRegion, String name, String latitude, String longitude, String placeID) {
         this.idRegion = idRegion;
         this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.placeID = placeID;
     }
 
     // Gettery i settery dla zmiennych
