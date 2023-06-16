@@ -26,6 +26,18 @@ public class AirInfo {
         this.date = date;
     }
 
+    public AirInfo(double latitude, double longitude, String city, String state, String country,
+                   int temperatureCelsius, int humidityPercent, int airQualityAQI) {
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.temperatureCelsius = temperatureCelsius;
+        this.humidityPercent = humidityPercent;
+        this.airQualityAQI = airQualityAQI;
+    }
+
     // Gettery i settery dla zmiennych
 
     public int getIdHistory() {
@@ -106,5 +118,19 @@ public class AirInfo {
 
     public void setDate(String date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "AirInfo{" +
+                "latitude=" + latitude +
+                ", longitude=" + longitude +
+                ", city='" + city + '\'' +
+                ", state='" + state + '\'' +
+                ", country='" + country + '\'' +
+                ", temperatureCelsius=" + temperatureCelsius +
+                ", humidityPercent=" + humidityPercent +
+                ", airQualityAQI=" + airQualityAQI +
+                '}';
     }
 }
