@@ -5,6 +5,56 @@ body {
     font-family: Arial, sans-serif;
 }
 
+#textMenu2 {
+    display: inline-block;
+}
+
+
+header ul{
+
+    padding: 0;
+    list-style: none;
+    display: inline;
+    text-align: center;
+}
+header li{
+    display: inline-block;
+}
+header li a{
+    display: inline-block;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 3vw;
+    border: none;
+    padding: 2.5vw;
+    cursor: pointer;
+    font-family: Arial, Verdana, serif;
+}
+header li a:hover{
+    color: #555555;
+}
+
+header li a {
+    padding: 1.5vw;
+    font-size: 1vw;
+}
+
+a {
+    z-index: 10;
+    color: black;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background-image: linear-gradient(0deg, rgba(255, 255, 255, 0), white);
+    text-align: center;
+}
+
+
 .container {
     display: flex;
     flex-direction: column;

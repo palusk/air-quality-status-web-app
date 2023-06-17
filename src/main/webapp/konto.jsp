@@ -20,6 +20,7 @@
     String latitude = database.selectLatitude(regionID);
     String longitude = database.selectLongitude(regionID);
 
+
 %>
 <!DOCTYPE html>
 <html>
@@ -28,6 +29,11 @@
     <link rel="stylesheet" type="text/css" href="konto_style.css">
 </head>
 <body>
+<header class="header">
+    <ul id="textMenu2">
+        <li> <a  href="index.jsp">Wróć do strony głównej</a></li>
+    </ul>
+</header>
 <div class="container">
     <div class="user-info">
         <h2>Konto użytkownika</h2>
