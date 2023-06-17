@@ -5,6 +5,7 @@
 <%@ page import="com.ziecinaplaneta.air.data.RegionsInfo" %>
 <%@ page import="com.ziecinaplaneta.air.controler.API" %>
 <%@ page import="java.util.Random" %>
+<%@ page import="com.ziecinaplaneta.air.controler.Date" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     Account user = (Account) session.getAttribute("user");
@@ -18,6 +19,10 @@
     Random random = new Random();
     int randomNumber = random.nextInt(10);
     String trivia = trivias.get(randomNumber);
+
+    if(Date.isDataNotAssigned()) {
+        new Date();
+    }
 %>
 <!DOCTYPE html>
 <html>
@@ -43,7 +48,7 @@
             <li> <a  href="konto.jsp">Konto</a></li>
             <% } %>
             <% if (user.getUprawnienia() > 0  || user.getUprawnienia() < 0) { %>
-                <li><form action="login" method="post"><button class="btn2" type="submit" name="logout" value="logout">Wyloguj</button></form></li>
+            <li><form action="login" method="post"><button class="btn2" type="submit" name="logout" value="logout">Wyloguj</button></form></li>
             <% }else{ %><li><a href="login.jsp"><button class="btn" type="button">Zaloguj</button></a></li> <% } %>
             <% if (user.getUprawnienia() == -1) { %>
             <li> <a  href="admin.jsp">ADMINISTRATION</a></li>
@@ -144,6 +149,44 @@
             });
         </script>
     </div>
+
+    <div id="bg3">
+        <table id="airDataTable">
+            <tr>
+                <th>City</th>
+                <th>State</th>
+                <th>Country</th>
+                <th>Temperature (Celsius)</th>
+                <th>Humidity (%)</th>
+                <th>Air Quality (AQI)</th>
+                <th>Date</th>
+                <th></th>
+                <th></th>
+            </tr>
+            <% List<AirInfo> airInfo = database.getAirDataDatabase(); %>
+            <% for (AirInfo info : airInfo) { %>
+            <% if (info.getDate().equals(Date.getDate())) { %>
+            <tr>
+                <td><input type="text" name="city<%= info.getIdHistory() %>" value="<%= info.getCity() %>"></td>
+                <td><input type="text" name="state<%= info.getIdHistory() %>" value="<%= info.getState() %>"></td>
+                <td><input type="text" name="country<%= info.getIdHistory() %>" value="<%= info.getCountry() %>"></td>
+                <td><input type="text" name="temperatureCelsius<%= info.getIdHistory() %>"
+                           value="<%= info.getTemperatureCelsius() %>"></td>
+                <td><input type="text" name="humidityPercent<%= info.getIdHistory() %>"
+                           value="<%= info.getHumidityPercent() %>"></td>
+                <td><input type="text" name="airQualityAQI<%= info.getIdHistory() %>"
+                           value="<%= info.getAirQualityAQI() %>"></td>
+                <td><input type="text" name="date<%= info.getIdHistory() %>" value="<%= info.getDate() %>"></td>
+            </tr>
+            <% } %>
+            <% } %>
+        </table>
+        <form action="admin" method="post">
+            <button class="btn" type="submit" name="newerData" value="newerData">nowsze data</button>
+            <button class="btn" type="submit" name="olderData" value="olderData">starsze dane</button>
+        </form>
+    </div>
+
 
 </div>
 

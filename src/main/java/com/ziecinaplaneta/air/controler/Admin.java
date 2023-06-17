@@ -32,6 +32,9 @@ public class Admin extends HttpServlet {
         String changeDataId = request.getParameter("changeData");
         String addData = request.getParameter("addData");
         String regionUpdateData = request.getParameter("regionUpdateData");
+        String newerData = request.getParameter("newerData");
+        String olderData = request.getParameter("olderData");
+
 
         if(changeUserId != null) {
             String dropdownValue = request.getParameter("permissionsDropdown_" + changeUserId);
@@ -102,9 +105,14 @@ public class Admin extends HttpServlet {
             }
             response.sendRedirect("/air_quality_status_web_app2_war_exploded/data.jsp");
 
+        }else if(newerData != null) {
+            Date.newerDate();
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/index.jsp");
+        }else if(olderData != null) {
+            Date.olderDate();
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/index.jsp");
         }
-
-        }
+    }
 
 
 }
