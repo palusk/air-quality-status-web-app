@@ -433,6 +433,22 @@ public class Driver {
     }
 
 
-
+    public List<String> getTriviaList() {
+        List<String> data = new ArrayList<>();
+        try {
+            String query = "SELECT * FROM CIEKAWOSTKI";
+            PreparedStatement stm = connection.prepareStatement(query);
+            ResultSet result = stm.executeQuery();
+            while (result.next()){
+                data.add(
+                        result.getString("TRESC")
+                );
+            }
+            return data;
+        } catch (SQLException e) {
+            System.out.println(e+"Warning: no data load!");
+            return data;
+        }
+    }
 
 }
