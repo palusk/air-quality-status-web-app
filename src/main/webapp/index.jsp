@@ -4,6 +4,7 @@
 <%@ page import="java.util.List" %>
 <%@ page import="com.ziecinaplaneta.air.data.RegionsInfo" %>
 <%@ page import="com.ziecinaplaneta.air.controler.API" %>
+<%@ page import="java.util.Random" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%
     Account user = (Account) session.getAttribute("user");
@@ -11,6 +12,12 @@
         user = new Account();
         session.setAttribute("user", user);
     }
+
+    Driver database = new Driver();
+    List<String> trivias = database.getTriviaList();
+    Random random = new Random();
+    int randomNumber = random.nextInt(10);
+    String trivia = trivias.get(randomNumber);
 %>
 <!DOCTYPE html>
 <html>
@@ -46,7 +53,7 @@
     </header>
     <div id="interesting-facts">
         <h2>Ciekawostki</h2>
-        <p>TUTAJ SE DAMY TEKST HEHE</p>
+        <p><%= trivia %></p>
     </div>
     <div id="bg2">
         <h1>Dane pogodowe dla wybranych współrzędnych</h1>
