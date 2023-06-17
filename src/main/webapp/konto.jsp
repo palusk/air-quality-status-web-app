@@ -37,18 +37,18 @@
             <p2><b>Nazwa użytkownika:</b>  <%= userName %></p2>  </br></br>
 
             <b>Region:</b> <%= regionName%>
-            <select name="region">
-                <option value="Stare Miasto">Stare Miasto</option>
-                <option value="Kazimierz">Kazimierz</option>
-                <option value="Podgórze">Podgórze</option>
-                <option value="Nowa Huta">Nowa Huta</option>
-                <option value="Krowodrza">Krowodrza</option>
-                <option value="Dębniki">Dębniki</option>
-                <option value="Zwierzyniec">Zwierzyniec</option>
-                <option value="Bieżanów-Prokocim">Bieżanów-Prokocim</option>
-                <option value="Bronowice">Bronowice</option>
-                <option value="Czyżyny">Czyżyny</option>
-            </select></br></br>
+                <select name="region">
+                    <option value="1">Warszawa</option>
+                    <option value="2">Kraków</option>
+                    <option value="3">Łódź</option>
+                    <option value="4">Wrocław</option>
+                    <option value="5">Poznań</option>
+                    <option value="6">Gdańsk</option>
+                    <option value="7">Szczecin</option>
+                    <option value="8">Bydgoszcz</option>
+                    <option value="9">Lublin</option>
+                    <option value="10">Katowice</option>
+                </select></br></br>
 
             <p2><b>Szerokość geograficzna:</b> <%= latitude%>  </p2> </br></br>
             <p2><b>Długość geograficzna:</b> <%= longitude%> </p2> </br></br>

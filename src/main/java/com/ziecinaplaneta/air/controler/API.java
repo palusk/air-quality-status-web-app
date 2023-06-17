@@ -11,9 +11,14 @@ import java.net.URL;
 public class API{
 
     static int counter = 0;
-    static String[] keys = {"64052ff3-73e2-4bab-9592-06e204bf2df2",
-        "f6b71fa4-2eb2-4903-9a75-48c4d67d143d",
-        "7a25e04d-4a52-44ae-9085-d55372d9fba5"};
+    static String[] keys = {
+            "64052ff3-73e2-4bab-9592-06e204bf2df2",
+            "f6b71fa4-2eb2-4903-9a75-48c4d67d143d",
+            "7a25e04d-4a52-44ae-9085-d55372d9fba5",
+            "c66a9ea4-c3e3-4a96-a2c8-5b095c48641e",
+            "1c39b65b-3ee3-44a8-ae65-65f082c298f2",
+             "20b95529-0f26-44c9-87d4-629ee406987e"
+    };
 
 
     private static String sendGetRequest(String apiUrl) throws IOException {
@@ -34,12 +39,12 @@ public class API{
     }
 
 
-    public static AirInfo getAirData(String lat, String lon, String placeID){
+    public static AirInfo getAirData(String lat, String lon){
         AirInfo data;
         String result = new String();
         try {
-            String apiUrl = "https://api.airvisual.com/v2/air-quality-map?lat=" + lat + "&lon=" + lon + "&key=" + "&placeId=" + placeID + keys[counter];
-            if(counter<2)counter++;
+            String apiUrl = "https://api.airvisual.com/v2/nearest_city?lat=" + lat + "&lon=" + lon + "&key=" + keys[counter];
+            if(counter<5)counter++;
             else counter = 0;
 
             result = sendGetRequest(apiUrl);

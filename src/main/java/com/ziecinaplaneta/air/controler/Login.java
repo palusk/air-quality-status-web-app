@@ -102,10 +102,8 @@ public class Login extends HttpServlet {
                 Account user = (Account) session.getAttribute("user");
 
                 String usernameSave = user.getLogin();
-                String regionName = request.getParameter("region");
+                int regionID = Integer.valueOf(request.getParameter("region"));
                 int userID = database.getUserId(usernameSave);
-                int regionID = database.selectRegionId(regionName);
-
                 if(database.insertIdRegionIntoUsers(regionID, userID)) {
                     response.sendRedirect("/air_quality_status_web_app2_war_exploded/konto.jsp");
                 }

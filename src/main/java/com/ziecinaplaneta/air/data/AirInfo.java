@@ -12,8 +12,11 @@ public class AirInfo {
     private int airQualityAQI;
     private String date;
 
+    public AirInfo() {
+    }
+
     public AirInfo(int idHistory, double latitude, double longitude, String city, String state, String country,
-                       int temperatureCelsius, int humidityPercent, int airQualityAQI, String date) {
+                   int temperatureCelsius, int humidityPercent, int airQualityAQI, String date) {
         this.idHistory = idHistory;
         this.latitude = latitude;
         this.longitude = longitude;

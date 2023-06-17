@@ -84,9 +84,8 @@ public class Admin extends HttpServlet {
 
                 String latitude = region.getLatitude();
                 String longitude = region.getLongitude();
-                String placeID = region.getPlaceID();
 
-                airInfo = API.getAirData(latitude, longitude, placeID);
+                airInfo = API.getAirData(latitude, longitude);
 
 
                 LocalDate currentDate = LocalDate.now();
@@ -96,7 +95,7 @@ public class Admin extends HttpServlet {
                 String date = currentDate.format(formatter);
 
 
-                database.insertAirQualityHistory(airInfo.getLatitude(), airInfo.getLongitude(), airInfo.getCity(), airInfo.getState(), airInfo.getCountry(),
+                database.insertAirQualityHistory(airInfo.getLatitude(), airInfo.getLongitude(), region.getName(), airInfo.getState(), airInfo.getCountry(),
                         airInfo.getTemperatureCelsius(), airInfo.getHumidityPercent(), airInfo.getAirQualityAQI(), date);
 
 
