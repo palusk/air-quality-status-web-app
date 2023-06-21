@@ -1,6 +1,7 @@
 package com.ziecinaplaneta.air.controler;
 
 import com.ziecinaplaneta.air.database.Driver;
+import com.ziecinaplaneta.air.user.Account;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -21,6 +22,8 @@ public class Favourite extends HttpServlet {
         Driver database = new Driver();
 
         HttpSession session = request.getSession();
+
+        Account user = (Account) session.getAttribute("user");
 
         String[] region = new String[10];
         int x = 0;
