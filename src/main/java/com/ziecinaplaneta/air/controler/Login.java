@@ -72,7 +72,7 @@ public class Login extends HttpServlet {
                     user.setImie(database.getNameByUsername(username));
                     user.setLogin(username);
                     user.setUprawnienia(database.selectUserPermissionLevel(username));
-
+                    user.setId(database.getUserId(username));
                     session.setAttribute("user", user);
 
                     response.sendRedirect("/air_quality_status_web_app2_war_exploded/index.jsp");

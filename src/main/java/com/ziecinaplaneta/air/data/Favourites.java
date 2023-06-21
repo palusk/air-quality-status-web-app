@@ -10,7 +10,7 @@ public class Favourites {
     public Favourites(int idUser) {
         this.idUser = idUser;
         Driver database = new Driver();
-        this.regions = database.getFavouritesTegions(idUser);
+        this.regions = database.getFavouritesRegions(idUser);
     }
 
     public boolean[] getRegions() {
