@@ -31,7 +31,7 @@ public class Driver {
     }
 
     public static String hashPassword(String password) {
-        byte[] KEY = { 0x01, 0x23, 0x45, 0x67, 0x67, 0x67, 0x67, 0x45 };
+        byte[] KEY = {0x01, 0x23, 0x45, 0x67, 0x67, 0x67, 0x67, 0x45};
         try {
             MessageDigest md = MessageDigest.getInstance("SHA-256");
             md.update(KEY);
@@ -50,7 +50,7 @@ public class Driver {
     }
 
 
-    public boolean insertNewUser(String email, String name, String username, String password){
+    public boolean insertNewUser(String email, String name, String username, String password) {
         try {
             String sqlUpdate = "INSERT INTO users (name, username, password, email) VALUES(?,?,?,?)";
             PreparedStatement stm = connection.prepareStatement(sqlUpdate);
@@ -66,21 +66,21 @@ public class Driver {
         }
     }
 
-    public boolean validateLogin(String username, String password){
+    public boolean validateLogin(String username, String password) {
         try {
-        password = hashPassword(password);
+            password = hashPassword(password);
 
-        String sqlQuery = "SELECT username, password FROM USERS WHERE username = ? AND password = ?";
+            String sqlQuery = "SELECT username, password FROM USERS WHERE username = ? AND password = ?";
 
-        PreparedStatement stm= connection.prepareStatement(sqlQuery);
-        stm.setString(1, username);
-        stm.setString(2, password);
+            PreparedStatement stm = connection.prepareStatement(sqlQuery);
+            stm.setString(1, username);
+            stm.setString(2, password);
 
-        ResultSet result = stm.executeQuery();
+            ResultSet result = stm.executeQuery();
 
-        if(result.next() == true){
-            return true;
-        }else return false;
+            if (result.next() == true) {
+                return true;
+            } else return false;
 
         } catch (SQLException e) {
             System.out.println(e);
@@ -90,26 +90,26 @@ public class Driver {
         }
     }
 
-    public boolean checkIfUsernameExist(String username){
+    public boolean checkIfUsernameExist(String username) {
         try {
-        String sqlQuery = "SELECT username FROM USERS WHERE username = ?";
-        PreparedStatement stm= connection.prepareStatement(sqlQuery);
-        stm.setString(1, username);
+            String sqlQuery = "SELECT username FROM USERS WHERE username = ?";
+            PreparedStatement stm = connection.prepareStatement(sqlQuery);
+            stm.setString(1, username);
 
-        ResultSet result = stm.executeQuery();
-        if(result.next() == true){
-            return true;
-        }else return false;
+            ResultSet result = stm.executeQuery();
+            if (result.next() == true) {
+                return true;
+            } else return false;
 
-    } catch (SQLException e) {
-        System.out.println(e);
-        e.printStackTrace();
-        System.out.println("Warning: validateLogin query failed!");
-        return false;
+        } catch (SQLException e) {
+            System.out.println(e);
+            e.printStackTrace();
+            System.out.println("Warning: validateLogin query failed!");
+            return false;
+        }
     }
-    }
 
-    public int getUserId(String username){
+    public int getUserId(String username) {
         try {
             String query = "SELECT iduser FROM users WHERE username = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -124,7 +124,7 @@ public class Driver {
     }
 
 
-    public String getNameByUsername(String username){
+    public String getNameByUsername(String username) {
         try {
             String query = "SELECT name FROM users WHERE username = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -138,7 +138,7 @@ public class Driver {
         }
     }
 
-    public String getEmailByUsername(String username){
+    public String getEmailByUsername(String username) {
         try {
             String query = "SELECT email FROM users WHERE username = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -159,7 +159,7 @@ public class Driver {
             PreparedStatement stm = connection.prepareStatement(query);
             ResultSet result = stm.executeQuery();
             int counter = 0;
-            while (result.next()){
+            while (result.next()) {
                 users.add(new Account());
                 users.get(counter).setId(result.getInt("IDUSER"));
                 users.get(counter).setIdRegion(result.getInt("IDREGION"));
@@ -188,7 +188,6 @@ public class Driver {
     }
 
 
-
     public void changePermisions(int userId, int permisions) {
         try {
             String sqlUpdate = "UPDATE users SET PERMISSIONS = ? WHERE IDUSER = ?";
@@ -201,7 +200,7 @@ public class Driver {
         }
     }
 
-    public int selectRegionId(String regionName){
+    public int selectRegionId(String regionName) {
         try {
             String query = "SELECT idregion FROM regions WHERE name = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -215,7 +214,7 @@ public class Driver {
         }
     }
 
-    public boolean insertIdRegionIntoUsers(int idregion, int iduser){
+    public boolean insertIdRegionIntoUsers(int idregion, int iduser) {
         try {
             String sqlUpdate = "UPDATE users SET idregion = ? WHERE iduser = ?";
             PreparedStatement stm = connection.prepareStatement(sqlUpdate);
@@ -230,7 +229,7 @@ public class Driver {
     }
 
 
-    public int selectRegionIdFromUsers(int iduser){
+    public int selectRegionIdFromUsers(int iduser) {
         try {
             String query = "SELECT idregion FROM users WHERE iduser = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -245,7 +244,7 @@ public class Driver {
     }
 
 
-    public String selectRegionName(int idregion){
+    public String selectRegionName(int idregion) {
         try {
             String query = "SELECT name FROM regions WHERE idregion = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -260,7 +259,7 @@ public class Driver {
         }
     }
 
-    public String selectLatitude(int idregion){
+    public String selectLatitude(int idregion) {
         try {
             String query = "SELECT latitude FROM regions WHERE idregion = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -276,7 +275,7 @@ public class Driver {
     }
 
 
-    public String selectLongitude(int idregion){
+    public String selectLongitude(int idregion) {
         try {
             String query = "SELECT longitude FROM regions WHERE idregion = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -297,7 +296,7 @@ public class Driver {
             String query = "SELECT * FROM AIR_QUALITY_HISTORY";
             PreparedStatement stm = connection.prepareStatement(query);
             ResultSet result = stm.executeQuery();
-            while (result.next()){
+            while (result.next()) {
                 data.add(new AirInfo(
                         result.getInt("IDHISTORY"),
                         result.getDouble("LATITUDE"),
@@ -313,7 +312,7 @@ public class Driver {
             }
             return data;
         } catch (SQLException e) {
-            System.out.println(e+"Warning: no data load!");
+            System.out.println(e + "Warning: no data load!");
             return data;
         }
     }
@@ -357,14 +356,14 @@ public class Driver {
                                         String country, double temperatureCelsius, int humidityPercent, int airQualityAQI,
                                         String date) {
 
-        try{
-        String query = "SELECT * FROM AIR_QUALITY_HISTORY WHERE latitude = ? AND longitude = ? AND date = ?";
+        try {
+            String query = "SELECT * FROM AIR_QUALITY_HISTORY WHERE latitude = ? AND longitude = ? AND date = ?";
             PreparedStatement stm = connection.prepareStatement(query);
             stm.setDouble(1, latitude);
             stm.setDouble(2, longitude);
             stm.setString(3, date);
             ResultSet result = stm.executeQuery();
-            if(!result.next()) {
+            if (!result.next()) {
                 String sqlInsert = "INSERT INTO AIR_QUALITY_HISTORY (LATITUDE, LONGITUDE, CITY, STATE, COUNTRY, TEMPERATURECELSIUS, HUMIDITYPERCENT, AIRQUALITYAQI, DATE) " +
                         "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
                 PreparedStatement stm2 = connection.prepareStatement(sqlInsert);
@@ -378,13 +377,14 @@ public class Driver {
                 stm2.setInt(8, airQualityAQI);
                 stm2.setString(9, date);
                 stm2.executeUpdate();
-            }} catch (SQLException e) {
+            }
+        } catch (SQLException e) {
             System.out.println(e + " Warning: no data updated");
         }
     }
 
 
-    public int selectUserPermissionLevel(String username){
+    public int selectUserPermissionLevel(String username) {
         try {
             String query = "SELECT permissions FROM users WHERE username = ?";
             PreparedStatement stm = connection.prepareStatement(query);
@@ -417,7 +417,7 @@ public class Driver {
             String query = "SELECT * FROM REGIONS";
             PreparedStatement stm = connection.prepareStatement(query);
             ResultSet result = stm.executeQuery();
-            while (result.next()){
+            while (result.next()) {
                 data.add(new RegionsInfo(
                         result.getInt("IDREGION"),
                         result.getString("NAME"),
@@ -427,7 +427,7 @@ public class Driver {
             }
             return data;
         } catch (SQLException e) {
-            System.out.println(e+"Warning: no Regions data load!");
+            System.out.println(e + "Warning: no Regions data load!");
             return data;
         }
     }
@@ -439,16 +439,65 @@ public class Driver {
             String query = "SELECT * FROM CIEKAWOSTKI";
             PreparedStatement stm = connection.prepareStatement(query);
             ResultSet result = stm.executeQuery();
-            while (result.next()){
+            while (result.next()) {
                 data.add(
                         result.getString("TRESC")
                 );
             }
             return data;
         } catch (SQLException e) {
-            System.out.println(e+"Warning: no data load!");
+            System.out.println(e + "Warning: no data load!");
             return data;
         }
     }
 
+    public boolean[] getFavouritesTegions(int idUser) {
+        boolean[] favourites = new boolean[10];
+        try {
+            String query = "SELECT * FROM FAVOURITE_REGIONS WHERE IDUSER = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setDouble(1, idUser);
+            ResultSet result = stm.executeQuery();
+
+            while (result.next()) {
+                favourites[result.getInt("IDREGION")] = true;
+            }
+            return favourites;
+        } catch (SQLException e) {
+            System.out.println(e + "Warning: no Regions data load!");
+            return favourites;
+        }
+    }
+
+    public boolean setFavouritesRegions(boolean[] favourites, int idUser) {
+
+        int i = 0;
+        for (boolean chceckd : favourites) {
+            i++;
+            try {
+                String query = "SELECT * FROM FAVOURITE_REGIONS WHERE IDUSER = ? AND IDREGION = ?";
+                PreparedStatement stm = connection.prepareStatement(query);
+                stm.setDouble(1, idUser);
+                stm.setDouble(2, i);
+                ResultSet result = stm.executeQuery();
+
+                if (result.next()) {
+                    if (result.getInt("IDREGION") == 1) {
+                        continue;
+                    }
+                }
+
+                String sqlUpdate = "INSERT INTO FAVOURITE_REGIONS (IDUSER, IDREGION) VALUES(?,?)";
+                PreparedStatement stm2 = connection.prepareStatement(sqlUpdate);
+                stm2.setInt(1, idUser);
+                stm2.setInt(2, i);
+                stm2.executeUpdate();
+            } catch (SQLException e) {
+                System.out.println(e + "Warning: no Regions data load!");
+                return false;
+            }
+
+        }
+        return true;
+    }
 }
