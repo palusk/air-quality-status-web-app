@@ -44,14 +44,13 @@ session.setAttribute("user", user);
 <% if(user.getIdRegion() != 0) {
  AirInfo data = API.getAirData(latitude, longitude);
  if(data.getAirQualityAQI() <= 49) { %>
-
 <ul class="lista-podpunktow" >
   <li>
     <span class="tytul-podpunktu" > Przedział AQI 0-49 (Dobra jakość powietrza): </span >
     <ul class="lista-podpunktow-podstawowa" >
-      <li> W tym przedziale jakości powietrza, warunki są dobre i uważane za bezpieczne. </li >
-      <li> Możesz swobodnie przebywać na zewnątrz i prowadzić normalne aktywności. </li >
-      <li> Wciąż zaleca się monitorowanie lokalnych prognoz powietrza dla jakiejkolwiek zmiany w warunkach. </li >
+      <li> <%= database.selectRecommendationOne(1)%> </li >
+      <li> <%= database.selectRecommendationTwo(1)%> </li >
+      <li> <%= database.selectRecommendationThree(1)%> </li >
     </ul >
   </li>
 </ul>
@@ -60,9 +59,9 @@ session.setAttribute("user", user);
   <li>
     <span class="tytul-podpunktu" > Przedział AQI 50-99 (Umiarkowana jakość powietrza): </span >
     <ul class="lista-podpunktow-podstawowa" >
-      <li> W tym przedziale jakości powietrza, jakość powietrza jest akceptowalna, ale mogą występować pewne zanieczyszczenia. </li >
-      <li> Jeśli jesteś osobą wrażliwą na problemy związane z jakością powietrza, takie jak osoby z astmą lub innymi schorzeniami układu oddechowego, rozważ ograniczenie czasu spędzanego na zewnątrz w miejscach o dużym ruchu lub zanieczyszczeniach. </li >
-      <li> Warto monitorować lokalne prognozy powietrza i unikać miejsc, gdzie jakość powietrza może być gorsza, na przykład obszarów z dużym zanieczyszczeniem. </li >
+      <li> <%= database.selectRecommendationOne(2)%> </li >
+      <li> <%= database.selectRecommendationTwo(2)%> </li >
+      <li> <%= database.selectRecommendationThree(2)%> </li >
     </ul>
   </li>
 </ul>
@@ -71,9 +70,9 @@ session.setAttribute("user", user);
   <li>
     <span class="tytul-podpunktu" > Przedział AQI 100-149 (Niezdrowa dla wrażliwych grup): </span >
     <ul class="lista-podpunktow-podstawowa" >
-      <li> W tym przedziale jakości powietrza, osoby wrażliwe, takie jak dzieci, osoby starsze i osoby z problemami zdrowotnymi, mogą odczuwać negatywne skutki związane z jakością powietrza. </li >
-      <li> Osoby wrażliwe powinny ograniczyć intensywne aktywności na zewnątrz i unikać miejsc o dużym zanieczyszczeniu powietrza. </li >
-      <li> Zaleca się monitorowanie lokalnych prognoz powietrza i stosowanie się do zaleceń zdrowotnych w przypadku wystąpienia wysokiej jakości powietrza. </li >
+      <li> <%= database.selectRecommendationOne(3)%> </li >
+      <li> <%= database.selectRecommendationTwo(3)%> </li >
+      <li> <%= database.selectRecommendationThree(3)%> </li >
     </ul>
   </li>
 </ul>
@@ -82,10 +81,9 @@ session.setAttribute("user", user);
   <li>
     <span class="tytul-podpunktu" > Przedział AQI 150+ (Bardzo niezdrowa lub niebezpieczna jakość powietrza): </span >
     <ul class="lista-podpunktow-podstawowa" >
-      <li> W tym przedziale jakości powietrza, jakość powietrza jest bardzo zła i może stanowić poważne zagrożenie dla zdrowia. </li >
-      <li> Zaleca się unikanie aktywności na zewnątrz, zwłaszcza dla osób wrażliwych i wszystkich innych osób. </li >
-      <li> W przypadku konieczności przebywania na zewnątrz, należy nosić odpowiednie maski ochronne, które filtrują cząstki zanieczyszczeń powietrza. </li >
-      <li>Monitoruj lokalne prognozy powietrza i stosuj się do wszelkich zaleceń zdrowotnych i ostrzeżeń wydanych przez lokalne władze lub służby zdrowia.</li>
+      <li> <%= database.selectRecommendationOne(4)%> </li >
+      <li> <%= database.selectRecommendationTwo(4)%> </li >
+      <li> <%= database.selectRecommendationThree(4)%> </li >
     </ul>
   </li>
 </ul>

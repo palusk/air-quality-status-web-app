@@ -46,6 +46,7 @@
             <li><a  href="zalecenia.jsp">Zalecenia</a></li>
             <% if (user.getUprawnienia() > 0) { %>
             <li> <a  href="konto.jsp">Konto</a></li>
+            <li> <a  href="favourite_places.jsp">Ulubione miejsca</a></li>
             <% } %>
             <% if (user.getUprawnienia() > 0  || user.getUprawnienia() < 0) { %>
             <li><form action="login" method="post"><button class="btn2" type="submit" name="logout" value="logout">Wyloguj</button></form></li>
