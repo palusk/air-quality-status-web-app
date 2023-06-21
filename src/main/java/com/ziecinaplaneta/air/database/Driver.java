@@ -451,7 +451,7 @@ public class Driver {
         }
     }
 
-    public boolean[] getFavouritesTegions(int idUser) {
+    public boolean[] getFavouritesRegions(int idUser) {
         boolean[] favourites = new boolean[10];
         try {
             String query = "SELECT * FROM FAVOURITE_REGIONS WHERE IDUSER = ?";
