@@ -5,8 +5,10 @@ import com.ziecinaplaneta.air.database.Driver;
 public class Favourites {
 
     boolean[] regions = new boolean[10];
+    int idUser;
 
     public Favourites(int idUser) {
+        this.idUser = idUser;
         Driver database = new Driver();
         this.regions = database.getFavouritesTegions(idUser);
     }
@@ -19,7 +21,7 @@ public class Favourites {
         this.regions = regions;
     }
 
-    public boolean saveFavourites(boolean[] regions, int idUser) {
+    public boolean saveFavourites() {
         Driver database = new Driver();
         return database.setFavouritesRegions(regions, idUser);
     }
