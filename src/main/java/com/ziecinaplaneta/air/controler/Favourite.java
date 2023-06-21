@@ -9,7 +9,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "Favourite", value = "/Favourite")
+@WebServlet(name = "favourite", value = "/favourite")
 public class Favourite extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -26,7 +26,7 @@ public class Favourite extends HttpServlet {
         Account user = (Account) session.getAttribute("user");
 
         String[] region = new String[10];
-        int x = 0;
+        boolean[] tab = new boolean[10];
 
          region[0] = request.getParameter("regionF1");
          region[1] = request.getParameter("regionF2");
@@ -45,15 +45,18 @@ public class Favourite extends HttpServlet {
 
         if(saveF != null){
 
-            boolean[] tab = new boolean[10];
-
-            for (boolean element : tab) {
+            for (int x=0; x<10; x++) {
                 if(region[x] != null){
-                    element = true;
-                }else element = false;
-                x++;
+                    tab[x] = true;
+                }else tab[x] = false;
             }
 
+            user.favourites.setRegions(tab);
+            user.favourites.saveFavourites();
+
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/konto.jsp");
+
         }
+
     }
 }

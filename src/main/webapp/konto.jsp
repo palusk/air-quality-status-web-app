@@ -20,8 +20,6 @@
     String latitude = database.selectLatitude(regionID);
     String longitude = database.selectLongitude(regionID);
 
-    int countF = 0;
-
 %>
 <!DOCTYPE html>
 <html>
@@ -63,21 +61,41 @@
             <button class="btn" type="submit" name="save" value="save">Zapisz</button></br></br>
         </form>
 
+
             <p2><b>Wybierz swoje ulubione miasta:</b></p2> </br></br>
             <form action="favourite" method="post">
-                <input type="checkbox" name="regionF1" value="1">Warszawa<br>
-                <input type="checkbox" name="regionF2" value="2">Kraków<br>
-                <input type="checkbox" name="regionF3" value="3">Łódź<br>
-                <input type="checkbox" name="regionF4" value="4">Wrocław<br>
-                <input type="checkbox" name="regionF5" value="5">Poznań<br>
-                <input type="checkbox" name="regionF6" value="6">Gdańsk<br>
-                <input type="checkbox" name="regionF7" value="7">Szczecin<br>
-                <input type="checkbox" name="regionF8" value="8">Bydgoszcz<br>
-                <input type="checkbox" name="regionF9" value="9">Lublin<br>
-                <input type="checkbox" name="regionF10" value="10">Katowice<br>
+                <input type="checkbox" name="regionF1" value="1" <% if(user.favourites.getRegions()[0]){ %>
+                checked
+                <%}%>>Warszawa<br>
+                <input type="checkbox" name="regionF2" value="2"<% if(user.favourites.getRegions()[1]){ %>
+                       checked
+                    <%}%>>Kraków<br>
+                <input type="checkbox" name="regionF3" value="3"<% if(user.favourites.getRegions()[2]){ %>
+                       checked
+                    <%}%>>Łódź<br>
+                <input type="checkbox" name="regionF4" value="4"<% if(user.favourites.getRegions()[3]){ %>
+                       checked
+                    <%}%>>Wrocław<br>
+                <input type="checkbox" name="regionF5" value="5"<% if(user.favourites.getRegions()[4]){ %>
+                       checked
+                    <%}%>>Poznań<br>
+                <input type="checkbox" name="regionF6" value="6"<% if(user.favourites.getRegions()[5]){ %>
+                       checked
+                    <%}%>>Gdańsk<br>
+                <input type="checkbox" name="regionF7" value="7"<% if(user.favourites.getRegions()[6]){ %>
+                       checked
+                    <%}%>>Szczecin<br>
+                <input type="checkbox" name="regionF8" value="8"<% if(user.favourites.getRegions()[7]){ %>
+                       checked
+                    <%}%>>Bydgoszcz<br>
+                <input type="checkbox" name="regionF9" value="9"<% if(user.favourites.getRegions()[8]){ %>
+                       checked
+                    <%}%>>Lublin<br>
+                <input type="checkbox" name="regionF10" value="10"<% if(user.favourites.getRegions()[9]){ %>
+                       checked
+                    <%}%>>Katowice<br>
 
             <button class="btn" type="submit" name="saveF" value="saveF">Zapisz ulubione miasta</button></br></br>
-
 
             </form>
     </div>

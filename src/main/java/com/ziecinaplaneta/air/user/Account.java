@@ -9,11 +9,16 @@ public class Account {
     private String email = "";
     private int wiek = 0;
     private int uprawnienia = 0;
-    public Favourites favourites = new Favourites(getId());
+    private int id;
+    private int idRegion;
 
-    public int getId() {
-        return id;
+    public Favourites favourites;
+
+    public void setFavourites() {
+        this.favourites = new Favourites(getId());
     }
+
+    public int getId() {return id;}
 
     public void setId(int id) {
         this.id = id;
@@ -27,8 +32,7 @@ public class Account {
         this.idRegion = idRegion;
     }
 
-    private int id;
-    private int idRegion;
+
 
     public String getImie() {
         return imie;
