@@ -21,7 +21,7 @@
   </div>
 
   <div class="form-field">
-    <button class="btn" type="submit" name="login" value="login">Zaloguj</button>
+    <a><button class="btn" type="submit" name="login" value="login">Zaloguj</button></a>
 
     <a href="index.jsp"><button class="btn" type="button">Zaloguj jako gość</button></a>
 
