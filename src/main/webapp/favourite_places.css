@@ -10,8 +10,31 @@
     filter: blur(4px);
 }
 
-/* Stylowanie bloku z ciekawostkami */
+
 #favourite-places {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+    float: left;
+    width: 300px;
+    z-index: 3;
+}
+
+
+#favourite-places h2 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+
+#favourite-places p {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+#favourite-places-average-data {
     background-color: #f2f2f2;
     padding: 20px;
     margin-top: 20px;
@@ -20,18 +43,19 @@
     z-index: 3;
 }
 
-/* Stylowanie tytułu bloku z ciekawostkami */
-#favourite-places h2 {
+
+#favourite-places-average-data h2 {
     text-align: center;
     font-size: 18px;
     margin-bottom: 10px;
 }
 
-/* Stylowanie treści bloku z ciekawostkami */
-#favourite-places p {
+
+#favourite-places-average-data p {
     font-size: 14px;
     line-height: 1.5;
 }
+
 
 #textMenu2 {
     display: inline-block;

@@ -16,14 +16,10 @@
 
     Driver database = new Driver();
 
-
     int iduser = database.getUserId(userName);
-
     int[] favouritesIdTAB = database.getFavouriteRegionsId(iduser);
 
     AirInfo data;
-
-
 %>
 <!DOCTYPE html>
 <html>
@@ -31,88 +27,156 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="favourite_places.css">
     <title>Ulubione miasta</title>
-
     <style>
-        .chart {
-            width: 200px;
-            height: 200px;
-            position: relative;
+        .circle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            background-color: lightgray;
-            overflow: hidden;
-        }
-
-        .slice {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-        }
-
-        .slice-1 {
-            clip-path: polygon(0 0, 100% 0, 100% 50%, 50% 50%);
-            background-color: #ff6384;
-        }
-
-        .slice-2 {
-            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
-            background-color: #36a2eb;
-        }
-
-        .slice-3 {
-            clip-path: polygon(0 50%, 50% 50%, 50% 100%, 0 100%);
-            background-color: #ffce56;
-        }
-
-        .label {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 16px;
+            font-size: 14px;
             font-weight: bold;
-            color: white;
+            margin-right: 10px;
+        }
+
+        .green {
+            background-color: #66BB6A;
+            color: #ffffff;
+        }
+
+        .yellow {
+            background-color: #FFCA28;
+            color: #000000;
+        }
+
+        .orange {
+            background-color: #FFA726;
+            color: #000000;
+        }
+
+        .red {
+            background-color: #EF5350;
+            color: #ffffff;
+        }
+
+        .chart-container {
+            display: flex;
+            justify-content: space-between;
+            width: 600px;
+        }
+
+
+
+        .chart {
+            width: 150px;
+            margin-right: 20px;
+        }
+
+
+
+        .bar {
+            width: 100%;
+            height: 200px;
+            background-color: lightgray;
+            margin-bottom: 10px;
+        }
+
+
+
+        .bar-label {
+            text-align: center;
+            font-weight: bold;
         }
     </style>
-
 </head>
 <body>
-<%--<div id="bg3">--%>
 <header class="header">
     <br id="textMenu2">
-    <li> <a  href="index.jsp">Wróć do strony głównej</a></li></br>
+    <li><a href="index.jsp">Wróć do strony głównej</a></li><br>
 </header>
 
 <div id="favourite-places">
-    <h2>Statystyki z ulubionych miast:</h2></br>
-    <%for(int x = 0; x<10; x++){
-    if(favouritesIdTAB[x] != 0){ %>
-        <h3><%=database.selectRegionName(favouritesIdTAB[x]) %></h3>
-
-        <%data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));%>
-
-        <p>AQI wynosi <%= data.getAirQualityAQI()%></p>
-        <p>Wilgotność wynosi <%= data.getHumidityPercent()%>%</p>
-        <p>Temperatura wynosi <%= data.getTemperatureCelsius()%>℃</p></br>
-        <%}%>
-    <%}%>
-    <div class="chart">
-        <div class="slice slice-1">
-            <span class="label">25%</span>
-        </div>
-        <div class="slice slice-2">
-            <span class="label">35%</span>
-        </div>
-        <div class="slice slice-3">
-            <span class="label">40%</span>
-        </div>
+    <h2>Statystyki z ulubionych miast:</h2><br>
+    <% for(int x = 0; x<10; x++) {
+        if (favouritesIdTAB[x] != 0) {
+            data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
+            int AQI = data.getAirQualityAQI();
+            String colorClass;
+            if (AQI <= 49) {
+                colorClass = "green";
+            } else if (AQI >= 50 && AQI <= 99) {
+                colorClass = "yellow";
+            } else if (AQI >= 100 && AQI <= 149) {
+                colorClass = "orange";
+            } else {
+                colorClass = "red";
+            }
+    %>
+    <h3><%= database.selectRegionName(favouritesIdTAB[x]) %></h3>
+    <div class="circle <%= colorClass %>">
+        <p>AQI: <%= AQI %></p>
     </div>
+    <p>Wilgotność wynosi <%= data.getHumidityPercent() %>%</p>
+    <p>Temperatura wynosi <%= data.getTemperatureCelsius() %>℃</p>
+    <% } } %>
 </div>
 
 
-<%--</div>--%>
+<div id="favourite-places-average-data">
+    <h2>Średnie statystyki z ulubionych miast:</h2><br>
+<%
+    for (int i = 0; i < 10; i++) {%>
+<%if(user.favourites.getRegions()[i]==true){%>
+<p><%= database.getAverage(i+1)%></p>
+<%}%>
+<%}%>
+</div>
+
+<div class="chart-container">
+    <div class="chart">
+        <h3>AQI (jakość powietrza)</h3>
+        <% for (int x = 0; x < 10; x++) {
+            if (favouritesIdTAB[x] != 0) {
+                String regionName = database.selectRegionName(favouritesIdTAB[x]);
+                data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
+                int aqiValue = data.getAirQualityAQI();
+        %>
+        <div class="bar" style="height: <%= aqiValue * 2 %>px;"></div>
+        <div class="bar-label"><%= regionName %></div>
+        <% } } %>
+    </div>
 
 
+
+    <div class="chart">
+        <h3>Wilgotność</h3>
+        <% for (int x = 0; x < 10; x++) {
+            if (favouritesIdTAB[x] != 0) {
+                String regionName = database.selectRegionName(favouritesIdTAB[x]);
+               data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
+                int humidityValue = data.getHumidityPercent();
+        %>
+        <div class="bar" style="height: <%= humidityValue * 2 %>px;"></div>
+        <div class="bar-label"><%= regionName %></div>
+        <% } } %>
+    </div>
+
+
+
+    <div class="chart">
+        <h3>Temperatura</h3>
+        <% for (int x = 0; x < 10; x++) {
+            if (favouritesIdTAB[x] != 0) {
+                String regionName = database.selectRegionName(favouritesIdTAB[x]);
+                data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
+                double temperatureValue = data.getTemperatureCelsius();
+        %>
+        <div class="bar" style="height: <%= temperatureValue + 20 %>px;"></div>
+        <div class="bar-label"><%= regionName %></div>
+        <% } } %>
+    </div>
+</div>
 
 </body>
 </html>

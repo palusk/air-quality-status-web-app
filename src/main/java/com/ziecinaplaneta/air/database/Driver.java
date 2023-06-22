@@ -582,4 +582,42 @@ public class Driver {
     }
 
 
+    public String getAverage(int idRegion) {
+        String data = "";
+        try {
+            String query = "SELECT * FROM AIR_QUALITY_HISTORY JOIN REGIONS ON AIR_QUALITY_HISTORY.CITY = REGIONS.NAME WHERE REGIONS.IDREGION = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setDouble(1, idRegion);
+            ResultSet result = stm.executeQuery();
+
+            int count = 0;
+            double avgTemp = 0;
+            double avgHum = 0;
+            double avgAQI = 0;
+            String name = "";
+            while (result.next()) {
+                count++;
+                avgTemp += result.getDouble("TEMPERATURECELSIUS");
+                avgHum += result.getDouble("HUMIDITYPERCENT");
+                avgAQI  += result.getDouble("AIRQUALITYAQI");
+                name = result.getString("NAME");
+            }
+            if(count != 0){
+                avgTemp /= count;
+                avgHum /= count;
+                avgAQI /= count;
+            }
+            data += "<b>" + name + "</b></br>";
+            data += "Srednia temperatura: " + avgTemp +"℃</br>";
+            data += "Srednie HUMIDITY: " + avgHum +"%</br>";
+            data += "Srednie AQI: " + avgAQI + "</br>";
+            data += "Dla: " + count + " dni</br></br>";
+            return data;
+        } catch (SQLException e) {
+            System.out.println(e + "Warning: no data load!");
+            return data;
+        }
+    }
+
+
 }
