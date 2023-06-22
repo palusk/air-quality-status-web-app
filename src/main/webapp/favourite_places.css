@@ -10,13 +10,28 @@
     filter: blur(4px);
 }
 
+/* Stylowanie bloku z ciekawostkami */
+#favourite-places {
+    background-color: #f2f2f2;
+    padding: 20px;
+    margin-top: 20px;
+    float: right;
+    width: 300px;
+    z-index: 3;
+}
 
- #map {
-     height: 400px;
-     width: 100%;
- }
+/* Stylowanie tytułu bloku z ciekawostkami */
+#favourite-places h2 {
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
 
-
+/* Stylowanie treści bloku z ciekawostkami */
+#favourite-places p {
+    font-size: 14px;
+    line-height: 1.5;
+}
 
 #textMenu2 {
     display: inline-block;

@@ -16,7 +16,7 @@ public class Driver {
 
     public Driver() {
 
-        jdbcUrl = "jdbc:h2:C:\\Users\\mateu\\IdeaProjects\\air-quality-status-web-app\\air-quality-status_web_db";
+        jdbcUrl = "jdbc:h2:D:\\Program Files\\IdeaProjects\\air-quality-status_web_app2\\air-quality-status_web_db";
         username = "admin";
         password = "admin";
 
@@ -451,6 +451,55 @@ public class Driver {
         }
     }
 
+
+    public String selectRecommendationOne(int IDrecommendation){
+        try {
+            String query = "SELECT RECOMMENDATION1 FROM RECOMMENDATIONS WHERE IDREC = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, IDrecommendation);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getString("RECOMMENDATION1");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectRecommendationOne query failed!");
+            System.out.println(e);
+            return "Empty RecommendationOne";
+        }
+    }
+
+    public String selectRecommendationTwo(int IDrecommendation){
+        try {
+            String query = "SELECT RECOMMENDATION2 FROM RECOMMENDATIONS WHERE IDREC = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, IDrecommendation);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getString("RECOMMENDATION2");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectRecommendationTwo query failed!");
+            System.out.println(e);
+            return "Empty RecommendationTwo";
+        }
+    }
+
+
+    public String selectRecommendationThree(int IDrecommendation){
+        try {
+            String query = "SELECT RECOMMENDATION3 FROM RECOMMENDATIONS WHERE IDREC = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setInt(1, IDrecommendation);
+            ResultSet result = stm.executeQuery();
+            result.next();
+            return result.getString("RECOMMENDATION3");
+        } catch (SQLException e) {
+            System.out.println("Warning: selectRecommendationThree query failed!");
+            System.out.println(e);
+            return "Empty RecommendationThree";
+        }
+    }
+
+
+
     public boolean[] getFavouritesRegions(int idUser) {
         boolean[] favourites = new boolean[10];
         try {
@@ -460,7 +509,7 @@ public class Driver {
             ResultSet result = stm.executeQuery();
 
             while (result.next()) {
-                favourites[result.getInt("IDREGION")] = true;
+                favourites[result.getInt("IDREGION")-1] = true;
             }
             return favourites;
         } catch (SQLException e) {
@@ -482,16 +531,24 @@ public class Driver {
                 ResultSet result = stm.executeQuery();
 
                 if (result.next()) {
-                    if (result.getInt("IDREGION") == 1) {
-                        continue;
+                    if (result.getInt("IDREGION") == i) {
+                        if(chceckd == true){
+                            continue;
+                        }else {
+                            String sqlUpdate = "DELETE FROM FAVOURITE_REGIONS WHERE IDUSER = ? AND IDREGION = ?";
+                            PreparedStatement stm2 = connection.prepareStatement(sqlUpdate);
+                            stm2.setInt(1, idUser);
+                            stm2.setInt(2, i);
+                            stm2.executeUpdate();
+                        }
                     }
-                }
-
-                String sqlUpdate = "INSERT INTO FAVOURITE_REGIONS (IDUSER, IDREGION) VALUES(?,?)";
-                PreparedStatement stm2 = connection.prepareStatement(sqlUpdate);
-                stm2.setInt(1, idUser);
-                stm2.setInt(2, i);
-                stm2.executeUpdate();
+                }else if (chceckd == true) {
+                    String sqlUpdate = "INSERT INTO FAVOURITE_REGIONS (IDUSER, IDREGION) VALUES(?,?)";
+                    PreparedStatement stm2 = connection.prepareStatement(sqlUpdate);
+                    stm2.setInt(1, idUser);
+                    stm2.setInt(2, i);
+                    stm2.executeUpdate();
+                }else continue;
             } catch (SQLException e) {
                 System.out.println(e + "Warning: no Regions data load!");
                 return false;
@@ -500,4 +557,29 @@ public class Driver {
         }
         return true;
     }
+
+
+
+
+    public int[] getFavouriteRegionsId(int idUser) {
+        int[] favouritesID = new int[10];
+        int x = 0;
+        try {
+            String query = "SELECT IDREGION FROM FAVOURITE_REGIONS WHERE IDUSER = ?";
+            PreparedStatement stm = connection.prepareStatement(query);
+            stm.setDouble(1, idUser);
+            ResultSet result = stm.executeQuery();
+
+            while (result.next()) {
+                favouritesID[x] = result.getInt("IDREGION");
+                x++;
+            }
+            return favouritesID;
+        } catch (SQLException e) {
+            System.out.println(e + "Warning: no Regions data load!");
+            return favouritesID;
+        }
+    }
+
+
 }

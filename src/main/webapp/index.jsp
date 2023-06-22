@@ -2,8 +2,6 @@
 <%@ page import="com.ziecinaplaneta.air.database.Driver" %>
 <%@ page import="com.ziecinaplaneta.air.data.AirInfo" %>
 <%@ page import="java.util.List" %>
-<%@ page import="com.ziecinaplaneta.air.data.RegionsInfo" %>
-<%@ page import="com.ziecinaplaneta.air.controler.API" %>
 <%@ page import="java.util.Random" %>
 <%@ page import="com.ziecinaplaneta.air.controler.Date" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -40,15 +38,15 @@
         <a  href="index.jsp"><img id="logobig" src="img/logo.png" alt="logo"></a>
         <ul id="textMenu">
             <li> <a  href="index.jsp">Strona główna</a></li>
-            <% if (user.getUprawnienia() > 0) { %>
+            <% if (user.getUprawnienia() != 0) { %>
             <li><a onclick="hide()">Sprawdź jakość powietrza</a></li>
             <% } %>
             <li><a  href="zalecenia.jsp">Zalecenia</a></li>
-            <% if (user.getUprawnienia() > 0) { %>
+            <% if (user.getUprawnienia() != 0) { %>
             <li> <a  href="konto.jsp">Konto</a></li>
-            <li> <a  href="favourite_places.jsp">Ulubione miejsca</a></li>
+            <li> <a  href="favourite_places.jsp">Ulubione miasta</a></li>
             <% } %>
-            <% if (user.getUprawnienia() > 0  || user.getUprawnienia() < 0) { %>
+            <% if (user.getUprawnienia() != 0) { %>
             <li><form action="login" method="post"><button class="btn2" type="submit" name="logout" value="logout">Wyloguj</button></form></li>
             <% }else{ %><li><a href="login.jsp"><button class="btn" type="button">Zaloguj</button></a></li> <% } %>
             <% if (user.getUprawnienia() == -1) { %>
