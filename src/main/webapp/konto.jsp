@@ -43,7 +43,7 @@
 
             <b>Twoje miasto:</b> <%= regionName%>
                 <select name="region">
-                    <option value="Miasta" selected disabled hidden>Miasta</option>
+                    <option value="0" selected hidden>Miasta</option>
                     <option value="1">Warszawa</option>
                     <option value="2">Kraków</option>
                     <option value="3">Łódź</option>

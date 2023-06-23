@@ -101,23 +101,19 @@ public class Login extends HttpServlet {
 
         } else if (save != null) {
 
+            if(Integer.valueOf(request.getParameter("region")) != 0){
                 Account user = (Account) session.getAttribute("user");
 
                 String usernameSave = user.getLogin();
                 int regionID = Integer.valueOf(request.getParameter("region"));
                 int userID = database.getUserId(usernameSave);
-                if(database.insertIdRegionIntoUsers(regionID, userID)) {
+                if (database.insertIdRegionIntoUsers(regionID, userID)) {
                     response.sendRedirect("/air_quality_status_web_app2_war_exploded/konto.jsp");
                 }
 
-
-                // Account emptyUser = (Account) session.getAttribute("user");
-                //emptyUser.setImie(changename);
-                //session.setAttribute("user", emptyUser);
-               // response.sendRedirect("/air_quality_status_web_app2_war_exploded/index.jsp");
+            }else response.sendRedirect("/air_quality_status_web_app2_war_exploded/konto.jsp");
 
 
-            out.close();
         }
     }
 }

@@ -20,7 +20,7 @@ Driver database = new Driver();
     </ul>
 </header>
 <body>
-<div class="container">
+<div class="container2">
     <div class="user-info">
         <h1>Lista użytkowników</h1>
         <table id="userTable">

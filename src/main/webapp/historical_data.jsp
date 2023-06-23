@@ -78,8 +78,8 @@
         <% } %>
     </table>
     <form action="admin" method="post">
-        <button class="btn" type="submit" name="newerData" value="newerData">nowsze data</button>
-        <button class="btn" type="submit" name="olderData" value="olderData">starsze dane</button>
+        <button class="btn" type="submit" name="newerData" value="newerData">Nowsze dane</button>
+        <button class="btn" type="submit" name="olderData" value="olderData">Starsze dane</button>
     </form>
 </div>
 
