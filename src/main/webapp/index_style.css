@@ -1,5 +1,5 @@
 #bg {
-    background-image: url('img/krakow2.jpg');
+    background-image: url('img/glowne_tlo.jpg');
     position: fixed;
     left: 0;
     top: 0;
@@ -89,23 +89,27 @@ a {
 
 /* Stylowanie bloku z ciekawostkami */
 #interesting-facts {
-    background-color: #f2f2f2;
+    background-color: #91FFFF;
     padding: 20px;
     margin-top: 20px;
     float: right;
     width: 300px;
+    border-radius:20px;
+    opacity:0.8;
 }
 
 /* Stylowanie tytułu bloku z ciekawostkami */
 #interesting-facts h2 {
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     margin-bottom: 10px;
+    font-style: italic;
+    font-weight: bold;
 }
 
 /* Stylowanie treści bloku z ciekawostkami */
 #interesting-facts p {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.5;
 }
 

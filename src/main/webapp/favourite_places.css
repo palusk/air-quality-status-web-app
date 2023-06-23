@@ -12,12 +12,17 @@
 
 
 #favourite-places {
+
+    position: absolute;
+    top: 0;
+    left: 0;
     background-color: #f2f2f2;
     padding: 20px;
     margin-top: 20px;
     float: left;
     width: 300px;
     z-index: 3;
+    background-color: rgba(242, 242, 242, 0.6);
 }
 
 
@@ -35,12 +40,16 @@
 
 
 #favourite-places-average-data {
+    position: absolute;
+    top: 0;
+    right: 0;
     background-color: #f2f2f2;
     padding: 20px;
     margin-top: 20px;
     float: right;
     width: 300px;
     z-index: 3;
+    background-color: rgba(242, 242, 242, 0.6);
 }
 
 
@@ -106,30 +115,3 @@ header {
     text-align: center;
 }
 
-
-/* Styl dla listy głównej */
-.lista-podpunktow {
-    font-family: Arial, sans-serif;
-    margin-left: 20px;
-    position: absolute;
-    top: 150px;
-    left: 150px;
-}
-
-/* Styl dla tytułów podpunktów */
-.tytul-podpunktu {
-    font-weight: bold;
-    font-size: 30px;
-}
-
-/* Styl dla listy podpunktów podstawowych */
-.lista-podpunktow-podstawowa {
-    margin-left: 20px;
-    font-size: 20px;
-}
-
-/* Styl dla elementów listy podpunktów podstawowych */
-.lista-podpunktow-podstawowa li {
-    margin-bottom: 5px;
-
-}

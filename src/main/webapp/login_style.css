@@ -1,5 +1,5 @@
 #bg {
-    background-image: url('img/Krakow.jpg');
+    background-image: url('img/login.jpg');
     position: fixed;
     left: 0;
     top: 0;
@@ -81,7 +81,7 @@ form .btn {
     cursor: pointer;
     display: inline-block;
     margin: auto;
-    padding: 0.9rem 1rem;
+    padding: 0.9rem 2rem;
     text-align: center;
     background-color: #47AB11;
     color: #fff;

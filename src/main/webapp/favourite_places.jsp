@@ -60,7 +60,11 @@
             color: #ffffff;
         }
 
-        .chart-container {
+        #chart-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             display: flex;
             justify-content: space-between;
             width: 600px;
@@ -88,9 +92,11 @@
             text-align: center;
             font-weight: bold;
         }
+
     </style>
 </head>
 <body>
+<div id="bg3"></div>
 <header class="header">
     <br id="textMenu2">
     <li><a href="index.jsp">Wróć do strony głównej</a></li><br>
@@ -123,17 +129,7 @@
 </div>
 
 
-<div id="favourite-places-average-data">
-    <h2>Średnie statystyki z ulubionych miast:</h2><br>
-<%
-    for (int i = 0; i < 10; i++) {%>
-<%if(user.favourites.getRegions()[i]==true){%>
-<p><%= database.getAverage(i+1)%></p>
-<%}%>
-<%}%>
-</div>
-
-<div class="chart-container">
+<div id="chart-container">
     <div class="chart">
         <h3>AQI (jakość powietrza)</h3>
         <% for (int x = 0; x < 10; x++) {
@@ -154,7 +150,7 @@
         <% for (int x = 0; x < 10; x++) {
             if (favouritesIdTAB[x] != 0) {
                 String regionName = database.selectRegionName(favouritesIdTAB[x]);
-               data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
+                data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
                 int humidityValue = data.getHumidityPercent();
         %>
         <div class="bar" style="height: <%= humidityValue * 2 %>px;"></div>
@@ -177,6 +173,18 @@
         <% } } %>
     </div>
 </div>
+
+
+<div id="favourite-places-average-data">
+    <h2>Średnie statystyki z ulubionych miast:</h2><br>
+<%
+    for (int i = 0; i < 10; i++) {%>
+<%if(user.favourites.getRegions()[i]==true){%>
+<p><%= database.getAverage(i+1)%></p>
+<%}%>
+<%}%>
+</div>
+
 
 </body>
 </html>

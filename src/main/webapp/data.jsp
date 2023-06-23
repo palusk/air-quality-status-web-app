@@ -10,15 +10,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Konto</title>
-  <link rel="stylesheet" type="text/css" href="index_style.css">
-  <link rel="stylesheet" type="text/css" href="konto_style.css">
+  <title>Dane pogodowe</title>
+  <link rel="stylesheet" type="text/css" href="admin_style.css">
+<%--  <link rel="stylesheet" type="text/css" href="data_style.css">--%>
 </head>
 <header class="header">
   <a href="index.jsp"><img id="logobig" src="img/logo.png" alt="logo"></a>
   <ul id="textMenu">
-    <li><a href="admin.jsp">ADMINISTRATION</a></li>
-    <li><a href="data.jsp">AIR DATA</a></li>
+    <li><a href="admin.jsp">Zarządzanie użytkownikami</a></li>
+    <li><a href="data.jsp">Dane pogodwe</a></li>
   </ul>
 </header>
 <body>
@@ -90,16 +90,6 @@
 
 
     <form id="region-form" action="admin" method="post">
-
-<%--      <input type="hidden" id="lat-input" name="latR">--%>
-<%--      <input type="hidden" id="lon-input" name="lonR">--%>
-
-<%--      <input type="hidden" id="city-input" name="cityR">--%>
-<%--      <input type="hidden" id="state-input" name="stateR">--%>
-<%--      <input type="hidden" id="country-input" name="countryR">--%>
-<%--      <input type="hidden" id="temperature-input" name="temperatureR">--%>
-<%--      <input type="hidden" id="humidity-input" name="humidityR">--%>
-<%--      <input type="hidden" id="airQuality-input" name="airQualityR">--%>
 
 
       <button class="btn" type="submit" name="regionUpdateData">Zaktualizuj dane dla każdego regionu</button>

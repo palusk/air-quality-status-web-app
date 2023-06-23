@@ -107,10 +107,10 @@ public class Admin extends HttpServlet {
 
         }else if(newerData != null) {
             Date.newerDate();
-            response.sendRedirect("/air_quality_status_web_app2_war_exploded/index.jsp");
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/historical_data.jsp");
         }else if(olderData != null) {
             Date.olderDate();
-            response.sendRedirect("/air_quality_status_web_app2_war_exploded/index.jsp");
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/historical_data.jsp");
         }
     }
 

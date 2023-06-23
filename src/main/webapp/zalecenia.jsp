@@ -23,6 +23,8 @@ session.setAttribute("user", user);
 
   user.setIdRegion(regionID);
 
+  String localRegionName = database.selectRegionName(regionID);
+
 %>
 <!DOCTYPE html>
 <html>
@@ -46,7 +48,7 @@ session.setAttribute("user", user);
  if(data.getAirQualityAQI() <= 49) { %>
 <ul class="lista-podpunktow" >
   <li>
-    <span class="tytul-podpunktu" > Przedział AQI 0-49 (Dobra jakość powietrza): </span >
+    <span class="tytul-podpunktu" > Dla twojego miasta (<%= localRegionName%>) AQI jest w przedziale <span style="color: green">0-49 (Dobra jakość powietrza)</span >: </span >
     <ul class="lista-podpunktow-podstawowa" >
       <li> <%= database.selectRecommendationOne(1)%> </li >
       <li> <%= database.selectRecommendationTwo(1)%> </li >
@@ -57,7 +59,7 @@ session.setAttribute("user", user);
 <% }else if(data.getAirQualityAQI() >= 50 && data.getAirQualityAQI() <= 99){  %>
 <ul class="lista-podpunktow" >
   <li>
-    <span class="tytul-podpunktu" > Przedział AQI 50-99 (Umiarkowana jakość powietrza): </span >
+    <span class="tytul-podpunktu" > Dla twojego miasta (<%= localRegionName%>) AQI jest w przedziale <span style="color: goldenrod">50-99 (Umiarkowana jakość powietrza)</span >: </span >
     <ul class="lista-podpunktow-podstawowa" >
       <li> <%= database.selectRecommendationOne(2)%> </li >
       <li> <%= database.selectRecommendationTwo(2)%> </li >
@@ -68,7 +70,7 @@ session.setAttribute("user", user);
 <% }else if(data.getAirQualityAQI() >= 100 && data.getAirQualityAQI() <= 149){  %>
 <ul class="lista-podpunktow" >
   <li>
-    <span class="tytul-podpunktu" > Przedział AQI 100-149 (Niezdrowa dla wrażliwych grup): </span >
+    <span class="tytul-podpunktu" > Dla twojego miasta (<%= localRegionName%>) AQI jest w przedziale <span style="color: orange">100-149 (Niezdrowa dla wrażliwych grup)</span >: </span >
     <ul class="lista-podpunktow-podstawowa" >
       <li> <%= database.selectRecommendationOne(3)%> </li >
       <li> <%= database.selectRecommendationTwo(3)%> </li >
@@ -79,7 +81,7 @@ session.setAttribute("user", user);
 <% }else if(data.getAirQualityAQI() >= 150){  %>
 <ul class="lista-podpunktow" >
   <li>
-    <span class="tytul-podpunktu" > Przedział AQI 150+ (Bardzo niezdrowa lub niebezpieczna jakość powietrza): </span >
+    <span class="tytul-podpunktu" > Dla twojego miasta (<%= localRegionName%>) AQI jest większe niż <span style="color: red">150 (Bardzo niezdrowa lub niebezpieczna jakość powietrza)</span >: </span >
     <ul class="lista-podpunktow-podstawowa" >
       <li> <%= database.selectRecommendationOne(4)%> </li >
       <li> <%= database.selectRecommendationTwo(4)%> </li >
@@ -88,6 +90,6 @@ session.setAttribute("user", user);
   </li>
 </ul>
 <% }
- } %>
+  } %>
 </body>
 </html>

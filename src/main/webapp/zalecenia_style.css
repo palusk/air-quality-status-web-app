@@ -1,6 +1,6 @@
 
 #bg3 {
-    background-image: url('img/zalecenia.jpg');
+    background-image: url('img/zalecenia2.jpg');
     position: fixed;
     left: 0;
     top: 0;
@@ -61,13 +61,23 @@ header {
 }
 
 
+
 /* Styl dla listy głównej */
 .lista-podpunktow {
     font-family: Arial, sans-serif;
     margin-left: 20px;
     position: absolute;
-    top: 150px;
-    left: 150px;
+
+
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.7); /* Przeźroczyste tło */
+    padding: 20px;
 }
 
 /* Styl dla tytułów podpunktów */
