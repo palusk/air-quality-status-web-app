@@ -1,4 +1,5 @@
 package com.ziecinaplaneta.air.database;
+import com.ziecinaplaneta.air.data.Filtr;
 import com.ziecinaplaneta.air.user.Account;
 import com.ziecinaplaneta.air.data.AirInfo;
 import com.ziecinaplaneta.air.data.RegionsInfo;
@@ -16,7 +17,7 @@ public class Driver {
 
     public Driver() {
 
-        jdbcUrl = "jdbc:h2:D:\\Program Files\\IdeaProjects\\air-quality-status_web_app2\\air-quality-status_web_db";
+        jdbcUrl = "jdbc:h2:C:\\Users\\mateu\\IdeaProjects\\air-quality-status-web-app\\air-quality-status_web_db";
         username = "admin";
         password = "admin";
 
@@ -612,6 +613,50 @@ public class Driver {
             data += "Srednie HUMIDITY: " + avgHum +"%</br>";
             data += "Srednie AQI: " + avgAQI + "</br>";
             data += "Dla: " + count + " dni</br></br>";
+            return data;
+        } catch (SQLException e) {
+            System.out.println(e + "Warning: no data load!");
+            return data;
+        }
+    }
+
+
+
+    public List<AirInfo> getAirFilteredAirData() {
+        List<AirInfo> data = new ArrayList<>();
+        try {
+
+            String query = "SELECT * FROM AIR_QUALITY_HISTORY";
+            PreparedStatement stm = connection.prepareStatement(query);
+            ResultSet result = stm.executeQuery();
+
+            while (result.next()) {
+
+                boolean te = Filtr.isMaxTempAssigned();
+                double das = Filtr.getMaxTemp();
+                int test = result.getInt("TEMPERATURECELSIUS");
+
+                if(
+                    ((Filtr.isMaxAqiAssigned() &&  result.getInt("AIRQUALITYAQI") <= Filtr.getMaxAqi()) || Filtr.isMaxAqiAssigned() == false) &&
+                    ((Filtr.isMinAqiAssigned() &&  result.getInt("AIRQUALITYAQI") >= Filtr.getMinAqi()) || Filtr.isMinAqiAssigned()  == false)&&
+                    ((Filtr.isMaxHumAssigned() &&  result.getInt("HUMIDITYPERCENT") <= Filtr.getMaxHum()) || Filtr.isMaxHumAssigned()  == false) &&
+                    ((Filtr.isMinHumAssigned() &&  result.getInt("HUMIDITYPERCENT") >= Filtr.getMinHum()) || Filtr.isMinHumAssigned()  == false) &&
+                    ((Filtr.isMaxTempAssigned() && result.getInt("TEMPERATURECELSIUS") <= Filtr.getMaxTemp()) || Filtr.isMaxTempAssigned() == false) &&
+                    ((Filtr.isMinTempAssigned() && result.getInt("TEMPERATURECELSIUS") >= Filtr.getMinTemp()) || Filtr.isMinTempAssigned() == false)
+                ){
+                data.add(new AirInfo(
+                        result.getInt("IDHISTORY"),
+                        result.getDouble("LATITUDE"),
+                        result.getDouble("LONGITUDE"),
+                        result.getString("CITY"),
+                        result.getString("STATE"),
+                        result.getString("COUNTRY"),
+                        result.getInt("TEMPERATURECELSIUS"),
+                        result.getInt("HUMIDITYPERCENT"),
+                        result.getInt("AIRQUALITYAQI"),
+                        result.getString("DATE")
+                ));
+            }}
             return data;
         } catch (SQLException e) {
             System.out.println(e + "Warning: no data load!");

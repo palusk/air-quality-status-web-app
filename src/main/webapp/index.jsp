@@ -86,7 +86,7 @@
             <button type="submit">Submit</button>
         </form>
         <div id="weather-data">
-            <p>Wprowadź współrzędne geograficzne i kliknij "Submit", aby wygenerować dane pogodowe.</p>
+            <p>Wybierz miasto i kliknij "Submit", aby wygenerować dane pogodowe.</p>
         </div>
         <script>
             // Funkcja obsługująca formularz

@@ -27,6 +27,20 @@
 
 }
 
+#historical-data2 {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column; /* Ustawienie układu w kolumnie */
+    justify-content: center; /* Wyśrodkowanie wertykalne */
+    align-items: center; /* Wyśrodkowanie horyzontalne */
+    width: 80%;
+    background-color: rgba(255, 255, 255, 0.6); /* Przeźroczyste tło */
+    padding: 20px;
+}
+
 #historical-data h2 {
     text-align: center;
     font-size: 24px;

@@ -18,7 +18,11 @@
 
     int iduser = database.getUserId(userName);
     int[] favouritesIdTAB = database.getFavouriteRegionsId(iduser);
+    boolean empty = true;
 
+    for (int i = 0; i < 10; i++) {
+        if(favouritesIdTAB[i] != 0 ) empty = false;
+    }
     AirInfo data;
 %>
 <!DOCTYPE html>
@@ -100,10 +104,17 @@
 <header class="header">
     <br id="textMenu2">
     <li><a href="index.jsp">Wróć do strony głównej</a></li><br>
+    <% if(empty) { %>
+    <li> <a  href="konto.jsp">Aby zobaczyć statystyki dla ulubionych miast, kliknij aby przejść do panelu konta użytkownika i wybierz swoje ulubione miasta.</a></li>
+    <% } %>
 </header>
 
+
+
 <div id="favourite-places">
+    <% if(!empty) { %>
     <h2>Statystyki z ulubionych miast:</h2><br>
+    <%}%>
     <% for(int x = 0; x<10; x++) {
         if (favouritesIdTAB[x] != 0) {
             data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
@@ -131,14 +142,16 @@
 
 <div id="chart-container">
     <div class="chart">
+        <% if(!empty) { %>
         <h3>AQI (jakość powietrza)</h3>
+        <%}%>
         <% for (int x = 0; x < 10; x++) {
             if (favouritesIdTAB[x] != 0) {
                 String regionName = database.selectRegionName(favouritesIdTAB[x]);
                 data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
                 int aqiValue = data.getAirQualityAQI();
         %>
-        <div class="bar" style="height: <%= aqiValue * 2 %>px;"></div>
+        <div class="bar" style="height: <%= aqiValue * 2 %>px; background-color: lemonchiffon"></div>
         <div class="bar-label"><%= regionName %></div>
         <% } } %>
     </div>
@@ -146,14 +159,16 @@
 
 
     <div class="chart">
+        <% if(!empty) { %>
         <h3>Wilgotność</h3>
+        <%}%>
         <% for (int x = 0; x < 10; x++) {
             if (favouritesIdTAB[x] != 0) {
                 String regionName = database.selectRegionName(favouritesIdTAB[x]);
                 data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
                 int humidityValue = data.getHumidityPercent();
         %>
-        <div class="bar" style="height: <%= humidityValue * 2 %>px;"></div>
+        <div class="bar" style="height: <%= humidityValue * 2 %>px;  background-color: lightskyblue"></div>
         <div class="bar-label"><%= regionName %></div>
         <% } } %>
     </div>
@@ -161,14 +176,16 @@
 
 
     <div class="chart">
+        <% if(!empty) { %>
         <h3>Temperatura</h3>
+        <%}%>
         <% for (int x = 0; x < 10; x++) {
             if (favouritesIdTAB[x] != 0) {
                 String regionName = database.selectRegionName(favouritesIdTAB[x]);
                 data = API.getAirData(database.selectLatitude(favouritesIdTAB[x]), database.selectLongitude(favouritesIdTAB[x]));
                 double temperatureValue = data.getTemperatureCelsius();
         %>
-        <div class="bar" style="height: <%= temperatureValue + 20 %>px;"></div>
+        <div class="bar" style="height: <%= temperatureValue + 20 %>px;  background-color: lightpink"></div>
         <div class="bar-label"><%= regionName %></div>
         <% } } %>
     </div>
@@ -176,7 +193,9 @@
 
 
 <div id="favourite-places-average-data">
+    <% if(!empty) { %>
     <h2>Średnie statystyki z ulubionych miast:</h2><br>
+    <%}%>
 <%
     for (int i = 0; i < 10; i++) {%>
 <%if(user.favourites.getRegions()[i]==true){%>

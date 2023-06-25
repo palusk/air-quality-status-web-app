@@ -37,7 +37,13 @@
 <div id="bg3"></div>
 <header class="header">
     <br id="textMenu2">
-    <li> <a  href="index.jsp">Wróć do strony głównej</a></li></br>
+    <ul id="textMenu">
+    <li> <a  href="index.jsp">Wróć do strony głównej</a></li>
+    <li><a href="historical_data.jsp">Dane historyczne</a></li>
+    <li><a href="filterData.jsp">Filtruj</a></li>
+    </ul>
+    </br>
+
 </header>
 
 <div id="historical-data">
@@ -82,7 +88,5 @@
         <button class="btn" type="submit" name="olderData" value="olderData">Starsze dane</button>
     </form>
 </div>
-
-
 </body>
 </html>

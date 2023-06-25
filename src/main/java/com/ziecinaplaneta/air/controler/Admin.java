@@ -1,6 +1,7 @@
 package com.ziecinaplaneta.air.controler;
 
 import com.ziecinaplaneta.air.data.AirInfo;
+import com.ziecinaplaneta.air.data.Filtr;
 import com.ziecinaplaneta.air.data.RegionsInfo;
 import com.ziecinaplaneta.air.database.Driver;
 import jakarta.servlet.*;
@@ -9,9 +10,7 @@ import jakarta.servlet.annotation.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @WebServlet(name = "admin", value = "/admin")
 public class Admin extends HttpServlet {
@@ -34,6 +33,8 @@ public class Admin extends HttpServlet {
         String regionUpdateData = request.getParameter("regionUpdateData");
         String newerData = request.getParameter("newerData");
         String olderData = request.getParameter("olderData");
+        String filtruj = request.getParameter("filtruj");
+        String reset = request.getParameter("reset");
 
 
         if(changeUserId != null) {
@@ -111,6 +112,32 @@ public class Admin extends HttpServlet {
         }else if(olderData != null) {
             Date.olderDate();
             response.sendRedirect("/air_quality_status_web_app2_war_exploded/historical_data.jsp");
+        }else if(filtruj != null) {
+
+            String minTemp = request.getParameter("minTemp");
+            String maxTemp = request.getParameter("maxTemp");
+            String minAqi = request.getParameter ("minAQI");
+            String maxAqi = request.getParameter ("maxAQI");
+            String minHum = request.getParameter ("minHum");
+            String maxHum = request.getParameter ("maxHum");
+
+
+            if(!minTemp.isEmpty() ){Filtr.setMinTempAssigned(true); Filtr.setMinTemp(Double.valueOf(minTemp)); } else { Filtr.setMinTempAssigned(false); }
+            if(!maxTemp.isEmpty() ){Filtr.setMaxTempAssigned(true);Filtr.setMaxTemp(Double.valueOf(maxTemp));} else { Filtr.setMaxTempAssigned(false); }
+            if(!minAqi.isEmpty() ){Filtr.setMinAqiAssigned(true);Filtr.setMinAqi(Double.valueOf(minAqi));} else { Filtr.setMinAqiAssigned(false); }
+            if(!maxAqi.isEmpty() ){Filtr.setMaxAqiAssigned(true);Filtr.setMaxAqi(Double.valueOf(maxAqi));} else { Filtr.setMaxAqiAssigned(false); }
+            if(!minHum.isEmpty() ){Filtr.setMinHumAssigned(true);Filtr.setMinHum(Double.valueOf(minHum));} else { Filtr.setMinHumAssigned(false); }
+            if(!maxHum.isEmpty() ){Filtr.setMaxHumAssigned(true);Filtr.setMaxHum(Double.valueOf(maxHum));} else { Filtr.setMaxHumAssigned(false); }
+
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/filterData.jsp");
+        }else if(reset != null) {
+            Filtr.setMinTempAssigned(false);
+            Filtr.setMaxTempAssigned(false);
+            Filtr.setMinAqiAssigned(false);
+            Filtr.setMaxAqiAssigned(false);
+            Filtr.setMinHumAssigned(false);
+            Filtr.setMaxHumAssigned(false);
+            response.sendRedirect("/air_quality_status_web_app2_war_exploded/filterData.jsp");
         }
     }
 
